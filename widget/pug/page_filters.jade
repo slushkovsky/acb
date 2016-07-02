@@ -1,0 +1,59 @@
+mixin checkbox(value)
+    div(class='checkbox')
+        label(style='padding: 0;')
+            input(type='checkbox' value=value)
+            span(class='cr')
+                i(class='cr-icon glyphicon glyphicon-ok')
+
+.page-container
+    h2.title Фильтры
+    
+    .row
+        div(class='col-xs-2 col-xs-offset-1')  Есть права
+        div(class='col-xs-9' style='height: 100%;')
+            div(class='material-switch pull-right' style='float: left !important;')
+                input(id='someSwitchOptionDefault' name='someSwitchOption001' type='checkbox')
+                label(for='someSwitchOptionDefault' class='label-default')
+
+    .row
+        div(class='col-xs-2 col-xs-offset-1') Машина
+        .col-xs-9
+            select#car-selector(multiple='multiple')
+    
+    .row
+        div(class='col-xs-2 col-xs-offset-1')  Город
+        .col-xs-9
+            +checkbox('need_city')
+
+    .row
+        div(class='col-xs-2 col-xs-offset-1') Площадка
+        .col-xs-9
+            +checkbox('need_driving_ground')
+
+    .row
+        div(class='col-xs-2 col-xs-offset-1') Маршруты ГИБДД
+        .col-xs-9
+            select#routes-selector(multiple='multiple')
+    
+
+    a(href='#pages' role='button' data-slide-to=PAGES.found) 
+        button.btn Поиск
+
+
+script(type='text/javascript')
+    | var cars = ['Renault Logan', 'Volkswagen Polo'];
+    | var routes = ['Марьино', 'Люблино'];
+    | $.each(cars, function(key, value){ 
+    |     $('#car-selector')
+    |         .append($('<option></option>')
+    |             .attr('value', value)
+    |             .text(value)); 
+    | });
+    | $.each(routes, function(key, value){ 
+    |     $('#routes-selector')
+    |         .append($('<option></option>')
+    |             .attr('value', value)
+    |             .text(value)); 
+    | });
+    | $('#car-selector')   .select2({placeholder: 'Model'});
+    | $('#routes-selector').select2({placeholder: 'Route'});

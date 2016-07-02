@@ -1,106 +1,37 @@
 doctype html
+
+- var PAGES = {};
+- PAGES.start = '0'; 
+- PAGES.mode_urgent = {select_time: '1'}; 
+- PAGES.mode_planning = {select_date: '2'}; 
+- PAGES.filters = '3';
+- PAGES.found = '4';
+
+
 html(lang='ru')
     head
         title Виджет
         meta(charset='utf-8')
         link(rel='stylesheet' href='styles/widget.css')
         	
-        link(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
-        link(rel='stylesheet' href='bower_components/select2/dist/css/select2.min.css')
-        link(rel='stylesheet' href='bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')
-        script(type='text/javascript' src='bower_components/jquery/dist/jquery.min.js')
-        script(type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js')
-        script(type='text/javascript' src='bower_components/select2/dist/js/select2.min.js')
-        script(type='text/javascript' src='bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')
+        include dependencies.jade
 
-    body(class='container')
+    body.container
         div(id='pages' class='carousel slide' data-ride='carousel' data-interval='false')
-            div(class='carousel-inner' role='listbox')
-                div(class='item active' id='page-time')
-                    div(class='page-container')
-                        h2(class='title row') Время занятия
+            .carousel-inner(role='listbox')
+                .item#page-time(class='active')
+                    include page_mode.jade
                 
-                        div(class='row')
-                            div(class='col-xs-3 col-xs-offset-3')
-                                a(href='#pages' role='button' data-slide-to='3')
-                                    div(class='case-card') 
-                                        img(src='img/calendar.png')
-                                        h4(class='title') Планово
-                                        p(class='descr') Спланировать занятие 
-                            div(class='col-xs-3')
-                                a(href='#pages' role='button' data-slide-to='1')
-                                    div(class='case-card') 
-                                        img(src='img/car.png')
-                                        h4(class='title') Срочно
-                                        p(class='descr') Занятие в текущий день
+                .item#page-timepicker
+                    include page_timepicker.jade
+                
+                .item#page-datepicker
+                    include page_datepicker.jade
+                
+                .item#page-filters
+                    include page_filters.jade
 
+                .item#page-found
+                    include page_found.jade
 
-                div(class='item' id='page-filters')
-                    div(class='page-container')
-                        h2(class='title') Фильтры
-                        
-                        div(class='row')
-                            div(class='col-xs-2 col-xs-offset-1')  Есть права
-                            div(class='col-xs-9' style='height: 100%;')
-                                div(class='material-switch pull-right' style='float: left !important;')
-                                    input(id='someSwitchOptionDefault' name='someSwitchOption001' type='checkbox')
-                                    label(for='someSwitchOptionDefault' class='label-default')
-
-                        div(class='row')
-                            div(class='col-xs-2 col-xs-offset-1') Машина:
-                            div(class='col-xs-9')
-                                select(id='car-selector' multiple='multiple')
-                        div(class='row')
-                            div(class='col-xs-2 col-xs-offset-1')  Город:
-                            div(class='col-xs-9')
-                                div(class='checkbox')
-                                    label(style='padding: 0;')
-                                        input(type='checkbox')
-                                        span(class='cr')
-                                            i(class='cr-icon glyphicon glyphicon-ok')
-
-                        div(class='row')
-                            div(class='col-xs-2 col-xs-offset-1') Площадка:
-                            div(class='col-xs-9')
-                                div(class='checkbox')
-                                    label(style='padding: 0;')
-                                        input(type='checkbox')
-                                        span(class='cr')
-                                            i(class='cr-icon glyphicon glyphicon-ok')
-                        div(class='row')
-                            div(class='col-xs-2 col-xs-offset-1') Маршруты ГИБДД:
-                            div(class='col-xs-9')
-                                select(id='routes-selector' multiple='multiple')
-                        
-
-                        a(href='#pages' role='button' data-slide-to='2') 
-                            button(class='btn') Поиск
-
-                div(id='page-found' class='item')
-                    h2(class='title') Результаты поиска
-
-                    ul(id='results-list')
-
-                div(id='page-datepicker' class='item')
-                    div(class='datepicker')
-
-
-        script(type='text/javascript')
-            | var cars = ['Renault Logan', 'Volkswagen Polo'];
-            | var routes = ['Марьино', 'Люблино'];
-            | $.each(cars, function(key, value){ 
-            |     $('#car-selector')
-            |         .append($('<option></option>')
-            |             .attr('value', value)
-            |             .text(value)); 
-            | });
-            | $.each(routes, function(key, value){ 
-            |     $('#routes-selector')
-            |         .append($('<option></option>')
-            |             .attr('value', value)
-            |             .text(value)); 
-            | });
-            | $('#car-selector').select2({placeholder: 'Model'});
-            | $('#routes-selector').select2({placeholder: 'Route'});
-            | $('.datepicker').datepicker({});
 
