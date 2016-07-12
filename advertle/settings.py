@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'advertle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {  # todo: add customization
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -122,3 +122,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# redis
+
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS_HOST = 'localhost'
+SESSION_REDIS_PORT = 6379
+SESSION_REDIS_DB = 0
+SESSION_REDIS_PASSWORD = 'password'
+SESSION_REDIS_PREFIX = 'session'
+SESSION_REDIS_SOCKET_TIMEOUT=1
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION' : ['localhost:6380']  # todo: add customization
+    },
+}
