@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "pug": "^2.0.0-beta3"
+    "pug": "^2.0.0-beta3",
+    "stylus": "~0.54.5",
+    "bower": "~1.7.9",
+    "pug-cli": "~1.0.0-alpha6"
   },
   "private": true,
   "devDependencies": {}

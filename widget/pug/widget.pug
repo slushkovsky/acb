@@ -14,24 +14,24 @@ html(lang='ru')
         meta(charset='utf-8')
         link(rel='stylesheet' href='styles/widget.css')
         	
-        include dependencies.jade
+        include dependencies.pug
 
     body.container
         div(id='pages' class='carousel slide' data-ride='carousel' data-interval='false')
             .carousel-inner(role='listbox')
                 .item#page-time(class='active')
-                    include page_mode.jade
+                    include page_mode.pug
                 
                 .item#page-timepicker
-                    include page_timepicker.jade
+                    include page_timepicker.pug
                 
                 .item#page-datepicker
-                    include page_datepicker.jade
+                    include page_datepicker.pug
                 
                 .item#page-filters
-                    include page_filters.jade
+                    include page_filters.pug
 
                 .item#page-found
-                    include page_found.jade
+                    include page_found.pug
 
 
