@@ -14,12 +14,12 @@ class CarView(ListAPIView):
 class EmployeView(ListAPIView):
     queryset = Employe.objects.all()
     serializer_class = EmployeSerializer
-    filter_backends = (filters.SearchFilter)
+    filter_backends = (filters.SearchFilter,)
     search_fields = ('car', )
 
 
 class WaybillView(ListAPIView):
     queryset = Waybill.objects.all()
     serializer_class = WaybillSerializer
-    filter_backends = (filters.SearchFilter)
+    filter_backends = (filters.SearchFilter,)
     search_fields = ('area', )
