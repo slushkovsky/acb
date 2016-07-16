@@ -14,13 +14,20 @@ mixin checkbox(value, is_checked)
         div(class='col-xs-2 col-xs-offset-1')  Есть права
         div(class='col-xs-9' style='height: 100%;')
             div(class='material-switch pull-right' style='float: left !important;')
-                input(id='someSwitchOptionDefault' name='someSwitchOption001' type='checkbox')
-                label(for='someSwitchOptionDefault' class='label-default')
+                input(id='has-license-switch' name='has_license' type='checkbox')
+                label(for='has-license-switch' class='label-default')
 
     .row
         div(class='col-xs-2 col-xs-offset-1') Машина
         .col-xs-9
             select#car-selector(multiple='multiple')
+
+    .row
+        div(class='col-xs-2 col-xs-offset-1') АКПП
+        div(class='col-xs-9' style='height: 100%;')
+            div(class='material-switch pull-right' style='float: left !important;')
+                input(id='ppc-switch' name='ppc' type='checkbox')
+                label(for='ppc-switch' class='label-default')
     
     .row
         div(class='col-xs-2 col-xs-offset-1') Город
@@ -34,8 +41,10 @@ mixin checkbox(value, is_checked)
 
     .row
         div(class='col-xs-2 col-xs-offset-1') Маршруты ГИБДД
-        .col-xs-9
+        .col-xs-6
             select#routes-selector(multiple='multiple')
+        .col-xs-3
+            a(href='#routes-list') Маршруты
 
     .row
         div(class='col-xs-2 col-xs-offset-1') Занятия с инвалидами
