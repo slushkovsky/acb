@@ -1,10 +1,14 @@
 {
-  "dependencies": {
+  "dependencies": {},
+  "private": true,
+  "devDependencies": {
     "pug": "^2.0.0-beta3",
     "stylus": "~0.54.5",
     "bower": "~1.7.9",
-    "pug-cli": "~1.0.0-alpha6"
-  },
-  "private": true,
-  "devDependencies": {}
+    "grunt": "~1.0.1",
+    "grunt-contrib-stylus": "~1.2.0",
+    "grunt-contrib-pug": "~1.0.0",
+    "grunt-contrib-imagemin": "~1.0.1",
+    "grunt-bower-install-simple": "~1.2.3"
+  }
 }

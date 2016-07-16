@@ -1,9 +1,9 @@
 include contents.pug
 
-mixin checkbox(value)
+mixin checkbox(value, is_checked)
     div(class='checkbox')
         label(style='padding: 0;')
-            input(type='checkbox' value=value)
+            input(type='checkbox' value=value checked=is_checked)
             span(class='cr')
                 i(class='cr-icon glyphicon glyphicon-ok')
 
@@ -23,20 +23,24 @@ mixin checkbox(value)
             select#car-selector(multiple='multiple')
     
     .row
-        div(class='col-xs-2 col-xs-offset-1')  Город
+        div(class='col-xs-2 col-xs-offset-1') Город
         .col-xs-9
-            +checkbox('need_city')
+            +checkbox('need_city', true)
 
     .row
         div(class='col-xs-2 col-xs-offset-1') Площадка
         .col-xs-9
-            +checkbox('need_driving_ground')
+            +checkbox('need_driving_ground', true)
 
     .row
         div(class='col-xs-2 col-xs-offset-1') Маршруты ГИБДД
         .col-xs-9
             select#routes-selector(multiple='multiple')
-    
+
+    .row
+        div(class='col-xs-2 col-xs-offset-1') Занятия с инвалидами
+        .col-xs-9
+            +checkbox('need_disabilities', false)  
 
     a(href='#pages' role='button' data-slide-to=PAGES.found) 
         button.btn Поиск

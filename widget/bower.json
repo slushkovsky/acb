@@ -1,12 +1,9 @@
 {
   "name": "widget",
-  "homepage": "None",
   "authors": [
     "Sergey Lushkovsky <s.lushkovsky@gmail.com>"
   ],
-  "description": "",
-  "main": "",
-  "license": "MIT",
+  "directory": "build/components", 
   "private": true,
   "ignore": [
     "**/.*",

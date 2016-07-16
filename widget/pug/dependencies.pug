@@ -1,7 +1,19 @@
-link(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
-link(rel='stylesheet' href='bower_components/select2/dist/css/select2.min.css')
-link(rel='stylesheet' href='bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')
-script(type='text/javascript' src='bower_components/jquery/jquery.min.js')
-script(type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js')
-script(type='text/javascript' src='bower_components/select2/dist/js/select2.min.js')
-script(type='text/javascript' src='bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')
+- var COMPONENTS_DIR = 'components/'
+
+mixin css(path)
+	link(rel='stylesheet' href=(COMPONENTS_DIR + path))
+
+mixin js(path)
+	script(type='text/javascript' src=(COMPONENTS_DIR + path))
+
+
+
++css('bootstrap/dist/css/bootstrap.min.css')
++css('select2/dist/css/select2.min.css')
++css('bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')
+
++js('jquery/jquery.min.js')
++js('bootstrap/dist/js/bootstrap.min.js')
++js('select2/dist/js/select2.min.js')
++js('bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')
+//- +js('bootstrap-timepicker/js/bootstrap-timepicker.js')

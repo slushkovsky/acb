@@ -8,4 +8,3 @@ sudo apt-get -y --purge remove nodejs
 sudo apt-get -y install nodejs npm
 
 npm install 
-./node_modules/.bin/bower install

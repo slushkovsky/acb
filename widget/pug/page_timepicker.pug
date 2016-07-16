@@ -1,4 +1,24 @@
 include contents.pug
 
 .page-container
-	h2.title Выберите время
+    h2.title Выберите время
+
+    div(class='col-xs-6') 
+        .row
+            div.bootstrap-timepicker
+                input(id='timepicker5' type='text' class='input-small')
+                i.icon-time
+        .row 
+            a(href='#pages' role='button' data-slide-to=PAGES.filters) 
+                button.btn Поиск
+
+    div(class='col-xs-6')
+        a(href='#pages' role='button' data-slide-to=PAGES.filters) 
+            button.btn Любое
+
+script(type='text/javascript')
+    | $('#timepicker5').timepicker({
+    |            template: false,
+    |            showInputs: false,
+    |            minuteStep: 5
+    |       });
