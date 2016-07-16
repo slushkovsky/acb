@@ -9,6 +9,7 @@
     "grunt-contrib-stylus": "~1.2.0",
     "grunt-contrib-pug": "~1.0.0",
     "grunt-contrib-imagemin": "~1.0.1",
-    "grunt-bower-install-simple": "~1.2.3"
+    "grunt-bower-install-simple": "~1.2.3",
+    "grunt-contrib-watch": "~1.0.0"
   }
 }

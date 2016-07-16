@@ -46,14 +46,46 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-        }
+        },
 
+        watch: {
+            pug: {
+                files: ['pug/*'],
+                tasks: ['pug'],
+                options: {
+                    livereload: true
+                }
+            }, 
+            images: {
+                files: ['img/*'], 
+                tasks: ['imagemin'],
+                options: {
+                    livereload: true
+                }
+            },
+            bower: {
+                files: ['bower.json'], 
+                tasks: ['bower-install-simple'],
+                options: {
+                    livereload: true
+                }
+            }, 
+            stylus: {
+                files: ['styles/*'], 
+                tasks: ['stylus'],
+                options: {
+                    livereload: true
+                }
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks("grunt-bower-install-simple");
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-bower-install-simple');
+
 
     grunt.registerTask('default', ['stylus', 'pug', 'bower-install-simple', 'imagemin']);
 };
