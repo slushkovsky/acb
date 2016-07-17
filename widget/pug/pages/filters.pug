@@ -1,4 +1,4 @@
-include contents.pug
+extends ./_layout.pug
 
 mixin checkbox(value, is_checked)
     div(class='checkbox')
@@ -7,7 +7,7 @@ mixin checkbox(value, is_checked)
             span(class='cr')
                 i(class='cr-icon glyphicon glyphicon-ok')
 
-.page-container
+block content    
     h2.title Фильтры
     
     .row
@@ -51,24 +51,31 @@ mixin checkbox(value, is_checked)
         .col-xs-9
             +checkbox('need_disabilities', false)  
 
-    a(href='#pages' role='button' data-slide-to=PAGES.found) 
+    a(href='#pages' id='btn-next' role='button') 
         button.btn Поиск
 
 
-script(type='text/javascript')
-    | var cars = ['Renault Logan', 'Volkswagen Polo'];
-    | var routes = ['Марьино', 'Люблино'];
-    | $.each(cars, function(key, value){ 
-    |     $('#car-selector')
-    |         .append($('<option></option>')
-    |             .attr('value', value)
-    |             .text(value)); 
-    | });
-    | $.each(routes, function(key, value){ 
-    |     $('#routes-selector')
-    |         .append($('<option></option>')
-    |             .attr('value', value)
-    |             .text(value)); 
-    | });
-    | $('#car-selector')   .select2({placeholder: 'Model'});
-    | $('#routes-selector').select2({placeholder: 'Route'});
+    script(type='text/javascript')
+        | $('#btn-next').click(function(){ 
+        |     user_data.filters = 'some_filters';
+        |     on_page('found');
+        | });
+
+
+    script(type='text/javascript')
+        | var cars = ['Renault Logan', 'Volkswagen Polo'];
+        | var routes = ['Марьино', 'Люблино'];
+        | $.each(cars, function(key, value){ 
+        |     $('#car-selector')
+        |         .append($('<option></option>')
+        |             .attr('value', value)
+        |             .text(value)); 
+        | });
+        | $.each(routes, function(key, value){ 
+        |     $('#routes-selector')
+        |         .append($('<option></option>')
+        |             .attr('value', value)
+        |             .text(value)); 
+        | });
+        | $('#car-selector')   .select2({placeholder: 'Model'});
+        | $('#routes-selector').select2({placeholder: 'Route'});

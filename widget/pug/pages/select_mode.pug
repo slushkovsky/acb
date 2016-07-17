@@ -1,0 +1,28 @@
+extends ./_layout.pug
+
+block content
+    h2.title Время занятия
+
+    .row
+        div(class='col-xs-3 col-xs-offset-3')
+            a(href='#pages' id='btn-mode-planning' role='button')
+                .case-card 
+                    img(src='img/calendar.png')
+                    h4.title Планово
+                    p.descr Спланировать занятие 
+        
+        .col-xs-3
+            a(href='#pages' id='btn-mode-urgent' role='button')
+                .case-card 
+                    img(src='img/car.png')
+                    h4.title Срочно
+                    p.descr Занятие в текущий день
+
+
+    script(type='text/javascript')
+        | $('#btn-mode-planning').click(function(){
+        |     on_page('datepicker');
+        | });
+        | $('#btn-mode-urgent').click(function() {
+        |     on_page('timepicker');
+        | });

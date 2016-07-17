@@ -1,37 +1,31 @@
 doctype html
 
-- var PAGES = {};
-- PAGES.start = '0'; 
-- PAGES.mode_urgent = {select_time: '1'}; 
-- PAGES.mode_planning = {select_date: '2'}; 
-- PAGES.filters = '3';
-- PAGES.found = '4';
-
-
 html(lang='ru')
     head
         title Виджет
         meta(charset='utf-8')
-        link(rel='stylesheet' href='styles/widget.css')
-        	
-        include dependencies.pug
+
+        include ./dependencies.pug
+
+        link(rel='stylesheet' href='styles/widget.min.css')
+        script(type='text/javascript' src='js/widget.min.js')
 
     body.container
         div(id='pages' class='carousel slide' data-ride='carousel' data-interval='false')
             .carousel-inner(role='listbox')
                 .item#page-time(class='active')
-                    include page_mode.pug
+                    include pages/select_mode.pug
                 
                 .item#page-timepicker
-                    include page_timepicker.pug
+                    include pages/select_time.pug
                 
                 .item#page-datepicker
-                    include page_datepicker.pug
+                    include pages/select_date.pug
                 
                 .item#page-filters
-                    include page_filters.pug
+                    include pages/filters.pug
 
                 .item#page-found
-                    include page_found.pug
+                    include pages/find_results.pug
 
 

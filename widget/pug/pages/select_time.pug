@@ -1,0 +1,35 @@
+extends ./_layout.pug
+
+block content
+    h2.title Выберите время
+
+    div(class='col-xs-6') 
+        .row
+            div.bootstrap-timepicker
+                input(id='timepicker5' type='text' class='input-small')
+                i.icon-time
+        .row 
+            a(href='#pages' id='btn-select-time' role='button') 
+                button.btn Выбрать
+
+    div(class='col-xs-6')
+        a(href='#pages' role='button' id='btn-any-time') 
+            button.btn Любое
+
+
+    script(type='text/javascript')
+        | $('#btn-select-time').click(function(){
+        |     user_data.timestamp = 'some_time';
+        |     on_page('filters');
+        | });
+        | $('btn-any-time').click(function(){
+        |     user_data.timestamp = 'time_any';
+        |     on_page('filters');
+        | });
+
+    script(type='text/javascript')
+        | $('#timepicker5').timepicker({
+        |            template: false,
+        |            showInputs: false,
+        |            minuteStep: 5
+        |       });

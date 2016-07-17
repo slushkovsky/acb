@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         stylus: {
             compile: {
                 files: {
-                    'build/styles/widget.css': ['styles/*.styl']
+                    'build/styles/widget.min.css': ['styles/*.styl']
                 }
             }
         },
@@ -15,6 +15,20 @@ module.exports = function(grunt) {
                 files: {
                     'build/index.html': ['pug/widget.pug']
                 }
+            }
+        },
+
+        concat: {
+            dist: {
+                src: ['js/**/*'],
+                dest: 'build/js/widget.js'
+            }
+        },
+
+        uglify: {
+            js: {
+                src: 'build/js/widget.js', 
+                dest: 'build/js/widget.min.js'
             }
         },
 
@@ -30,7 +44,7 @@ module.exports = function(grunt) {
             },
             dev: {
                 options: {
-                    production: false
+                    productionhb: false
                 }
             }
         },  
@@ -50,14 +64,14 @@ module.exports = function(grunt) {
 
         watch: {
             pug: {
-                files: ['pug/*'],
+                files: ['pug/**/*'],
                 tasks: ['pug'],
                 options: {
                     livereload: true
                 }
             }, 
             images: {
-                files: ['img/*'], 
+                files: ['img/**/*'], 
                 tasks: ['imagemin'],
                 options: {
                     livereload: true
@@ -71,8 +85,15 @@ module.exports = function(grunt) {
                 }
             }, 
             stylus: {
-                files: ['styles/*'], 
+                files: ['styles/**/*'], 
                 tasks: ['stylus'],
+                options: {
+                    livereload: true
+                }
+            }, 
+            js: {
+                files: ['js/**/*'],
+                tasks: ['concat', 'uglify'],
                 options: {
                     livereload: true
                 }
@@ -84,8 +105,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');    
     grunt.loadNpmTasks('grunt-bower-install-simple');
 
 
-    grunt.registerTask('default', ['stylus', 'pug', 'bower-install-simple', 'imagemin']);
+    grunt.registerTask('default', [
+        'stylus', 
+        'pug', 
+        'bower-install-simple', 
+        'imagemin', 
+        'concat',
+        'uglify'
+    ]);
 };

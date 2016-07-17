@@ -1,6 +1,9 @@
 {
   "dependencies": {},
   "private": true,
+  "scripts": {
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+  },
   "devDependencies": {
     "pug": "^2.0.0-beta3",
     "stylus": "~0.54.5",
@@ -10,6 +13,9 @@
     "grunt-contrib-pug": "~1.0.0",
     "grunt-contrib-imagemin": "~1.0.1",
     "grunt-bower-install-simple": "~1.2.3",
-    "grunt-contrib-watch": "~1.0.0"
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-contrib-uglify": "~1.0.1",
+    "grunt-contrib-concat": "~1.0.1",
+    "flow-bin": "~0.29.0"
   }
 }

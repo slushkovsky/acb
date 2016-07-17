@@ -1,0 +1,19 @@
+extends ./_layout.pug
+
+block content
+    h2.title Выберите дату занятия
+
+    .datepicker
+    
+    a(href='#pages' id='btn-choise' role='button') 
+        button.btn Выбрать
+
+
+    script(type='text/javascript') 
+        | $('#btn-choise').click(function(){ 
+        |     user_data.timestamp = 'some_date';
+        |     on_page('filters');
+        | });
+
+    script(type='text/javascript')
+        | $('.datepicker').datepicker({});
