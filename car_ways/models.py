@@ -1,29 +1,29 @@
 from django.db import models
 
 class Car(models.Model):
-    mark = models.CharField('Марка', max_length=20)
-    model = models.CharField('Модель', max_length=30)
+    mark = models.CharField('Mark', max_length=20)
+    model = models.CharField('Model', max_length=30)
 
     GEAR_BOX_CHOICES = (
-        ('mech', 'Механическая'),
-        ('auto', 'Автоматическая')
+        ('mech', 'Machanical'),
+        ('auto', 'Automotive')
     )
-    gear_box = models.CharField('Коробка передач', max_length=20, choices=GEAR_BOX_CHOICES)
+    gear_box = models.CharField('PPC', max_length=20, choices=GEAR_BOX_CHOICES)
     
-    photo = models.ImageField('Фото', null=True, blank=True)
+    photo = models.ImageField('Photos', null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Автомобиль'
-        verbose_name_plural = 'Автомобили'
+        verbose_name = 'Car'
+        verbose_name_plural = 'Cars'
 
 
 class Waybill(models.Model):
-    area = models.CharField('Район', max_length=80)
-    schema = models.ImageField('Схема')
+    area = models.CharField('District', max_length=80)
+    schema = models.ImageField('Schema')
 
     class Meta:
-        verbose_name = 'Маршрут'
-        verbose_name_plural = 'Маршруты'
+        verbose_name = 'Route'
+        verbose_name_plural = 'Routes'
 
 
 class Employe(models.Model):
@@ -31,9 +31,9 @@ class Employe(models.Model):
     surname = models.CharField(max_length=50)
     patronymic = models.CharField(max_length=50)
 
-    car = models.OneToOneField(Car, verbose_name='Авто')
-    waybills = models.ManyToManyField(Waybill, verbose_name='Маршруты')
+    car = models.OneToOneField(Car, verbose_name='car')
+    waybills = models.ManyToManyField(Waybill, verbose_name='routes')
 
     class Meta:
-        verbose_name = 'Сотрудник'
-        verbose_name_plural = 'Сотрудники'
+        verbose_name = 'Employe'
+        verbose_name_plural = 'Employees'
