@@ -1,5 +1,6 @@
 *.html
 *.css
+*.log
 node_modules/
 bower_components/
 build/

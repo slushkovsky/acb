@@ -3,7 +3,7 @@
   "authors": [
     "Sergey Lushkovsky <s.lushkovsky@gmail.com>"
   ],
-  "directory": "build/components", 
+  "directory": "build/components",
   "private": true,
   "ignore": [
     "**/.*",
@@ -16,6 +16,9 @@
     "jquery": "~1.9.0",
     "bootstrap": "^3.3.6",
     "select2": "^4.0.3",
-    "bootstrap-datepicker": "^1.6.1"
+    "bootstrap-datepicker": "^1.6.1",
+    "bootstrap-switch": "^3.3.2"
+  },
+  "devDependencies": {
   }
 }
