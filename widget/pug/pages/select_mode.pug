@@ -5,18 +5,16 @@ block content
 
     .row
         div(class='col-xs-3 col-xs-offset-3')
-            a(href='#pages' id='btn-mode-planning' role='button')
-                .case-card 
-                    img(src='img/calendar.png')
-                    h4.title Планово
-                    p.descr Спланировать занятие 
+            .case-card#btn-mode-planning
+                img(src='img/calendar.png')
+                h4.title Планово
+                p.descr Спланировать занятие 
         
         .col-xs-3
-            a(href='#pages' id='btn-mode-urgent' role='button')
-                .case-card 
-                    img(src='img/car.png')
-                    h4.title Срочно
-                    p.descr Занятие в текущий день
+            .case-card#btn-mode-urgent
+                img(src='img/car.png')
+                h4.title Срочно
+                p.descr Занятие в текущий день
 
 
     script(type='text/javascript')

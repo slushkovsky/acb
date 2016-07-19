@@ -17,8 +17,9 @@
     "bootstrap": "^3.3.6",
     "select2": "^4.0.3",
     "bootstrap-datepicker": "^1.6.1",
-    "bootstrap-switch": "^3.3.2"
+    "bootstrap-switch": "^3.3.2",
+    "jquery-ui": "^1.12.0",
+    "moment": "^2.14.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
