@@ -44,15 +44,15 @@ block content
         .col-xs-6
             select#routes-selector(multiple='multiple')
         .col-xs-3
-            a(href='#routes-list') Маршруты
+            a#ref-routes-list Маршруты
 
     .row
         div(class='col-xs-2 col-xs-offset-1') Занятия с инвалидами
         .col-xs-9
             +checkbox('need_disabilities', false)  
-
-    a(href='#pages' id='btn-next' role='button') 
-        button.btn Поиск
+ 
+    
+    button.btn#btn-next Поиск
 
 
     script(type='text/javascript')
@@ -60,6 +60,10 @@ block content
         |     user_data.filters = 'some_filters';
         |     on_page('found');
         | });
+        | $('#ref-routes-list').click(function() {
+        |     console.log('Click');
+        |     on_page('routes_list');
+        | })
 
 
     script(type='text/javascript')

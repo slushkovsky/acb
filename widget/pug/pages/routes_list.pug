@@ -1,0 +1,19 @@
+extends ./_layout.pug
+
+mixin route(name, descr, img_link)
+    .row
+        .col-xs-8
+            h3 name
+            p descr
+
+        .col-xs-4 
+            img(src=img_link)
+
+
+block content
+    h2.title Маршруты ГИБДД 
+
+    #routes-list
+        +route('Варшавский', 'Описание маршрута', 'https://www.gazu.ru/images/examen_gibdd/routes/moscow/gibdd_route_02.png')
+        +route('Марьино', 'Описание марштура', 'http://magistralmos.ru/upload/map/map_01.gif')
+        +route('Пялово', 'Описание маршрута', 'https://www.gazu.ru/images/examen_gibdd/routes/moscow/gibdd_route_06.png')

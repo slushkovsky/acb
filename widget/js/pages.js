@@ -5,7 +5,8 @@ var PAGES = { // TODO: Autogenerate
 	timepicker: 1, 
 	datepicker: 2, 
 	filters: 3, 
-	found: 4
+	found: 4,
+	routes_list: 5
 };
 var NAVS_UPDATE_TIMEOUT = 1000;
 
