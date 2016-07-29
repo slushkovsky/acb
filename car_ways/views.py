@@ -1,6 +1,6 @@
 from rest_framework import filters
-from .models import Car, Employe, Waybill
-from .serializers import CarSerializer, EmployeSerializer, WaybillSerializer
+from .models import Car, Instructor, Waybill
+from .serializers import CarSerializer, InstructorSerializer, WaybillSerializer
 from rest_framework.generics import ListAPIView
 
 
@@ -11,9 +11,9 @@ class CarView(ListAPIView):
     search_fields = ('mark', 'model')
 
 
-class EmployeView(ListAPIView):
-    queryset = Employe.objects.all()
-    serializer_class = EmployeSerializer
+class InstructorView(ListAPIView):
+    queryset = Instructor.objects.all()
+    serializer_class = InstructorSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('car', )
 

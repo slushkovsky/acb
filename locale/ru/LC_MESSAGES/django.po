@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-29 22:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: car_ways/models.py:6 car_ways/models.py:82
+msgid "Car"
+msgstr "Машина"
+
+#: car_ways/models.py:7
+msgid "Cars"
+msgstr "Машины"
+
+#: car_ways/models.py:9
+msgid "Mark"
+msgstr "Марка"
+
+#: car_ways/models.py:10
+msgid "Model"
+msgstr "Модель"
+
+#: car_ways/models.py:13
+msgid "Machanical"
+msgstr "Механическая"
+
+#: car_ways/models.py:14
+msgid "Automotive"
+msgstr "Автоматическая"
+
+#: car_ways/models.py:17
+msgid "PPC"
+msgstr "КПП"
+
+#: car_ways/models.py:19 car_ways/models.py:78
+msgid "Photo"
+msgstr "Фото"
+
+#: car_ways/models.py:29 car_ways/models.py:47
+msgid "City"
+msgstr "Город"
+
+#: car_ways/models.py:30
+msgid "Cities"
+msgstr "Города"
+
+#: car_ways/models.py:33 car_ways/models.py:48
+msgid "Name"
+msgstr "Название"
+
+#: car_ways/models.py:43 car_ways/models.py:60
+msgid "District"
+msgstr "Район"
+
+#: car_ways/models.py:44
+msgid "Districts"
+msgstr "Районы"
+
+#: car_ways/models.py:56
+msgid "Waybill"
+msgstr "Маршрут"
+
+#: car_ways/models.py:57 car_ways/models.py:83
+msgid "Waybills"
+msgstr "Маршруты"
+
+#: car_ways/models.py:61
+msgid "Schema"
+msgstr "Схема"
+
+#: car_ways/models.py:71
+msgid "Instructor"
+msgstr "Инструктор"
+
+#: car_ways/models.py:72
+msgid "Instructors"
+msgstr "Инструктора"
+
+#: car_ways/models.py:75
+msgid "First name"
+msgstr "Имя"
+
+#: car_ways/models.py:76
+msgid "Last urname"
+msgstr "Фамилия"
+
+#: car_ways/models.py:77
+msgid "Patronymic"
+msgstr "Отчество"
+
+#: car_ways/models.py:79
+msgid "With license"
+msgstr "Ученики с правами"
+
+#: car_ways/models.py:80
+msgid "With limitations"
+msgstr "Ученики с огр. возможностями"

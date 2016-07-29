@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Car, Waybill, Employe
+from .models import Car, Waybill, Instructor
 
 
 class CarSerializer(ModelSerializer):
@@ -12,9 +12,10 @@ class WaybillSerializer(ModelSerializer):
         model = Waybill
 
 
-class EmployeSerializer(ModelSerializer):
+class InstructorSerializer(ModelSerializer):
+    class Meta:
+        model = Instructor
+        
     car = CarSerializer()
     waybills = WaybillSerializer(many=True)
 
-    class Meta:
-        model = Employe

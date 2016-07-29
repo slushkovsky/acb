@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Car, Employe, Waybill
+from .models import Car, Instructor, Waybill, City, District
+
+admin.site.site_header = 'ACB Admin'
+admin.site.title = 'ACB'
 
 
 @admin.register(Car)
@@ -7,8 +10,18 @@ class CarAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Employe)
-class EmployeAdmin(admin.ModelAdmin):
+@admin.register(District)
+class DistrictAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Instructor)
+class InstructorAdmin(admin.ModelAdmin):
     pass
 
 
