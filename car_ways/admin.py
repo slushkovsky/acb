@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Car, Instructor, Waybill, City, District
 
 admin.site.site_header = 'ACB Admin'
-admin.site.title = 'ACB'
+admin.site.site_title = 'ACB'
 
 
 @admin.register(Car)

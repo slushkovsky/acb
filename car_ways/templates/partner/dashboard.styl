@@ -1,0 +1,96 @@
+@import 'popups/modal.styl'
+
+plus-item(width, heihgt, color)
+    width: width
+    height: heihgt
+                        
+    display: table-cell
+    vertical-align: middle
+    text-align: center
+
+    border-style: solid
+    border-width: 0.026 * width
+    border-color: color
+    border-radius: 15%
+                        
+    color: color
+    font-size: 0.35 * width
+    
+
+list-item-size = 8.0vh
+list-item-rel = 1.15
+
+
+html
+    background-color: gray
+    
+    body  
+        background-color: white
+
+        form[name='new_instructor']
+            .row
+                margin: 5vh 4vw
+                
+                h3 
+                    margin-bottom: 3.5vh
+                    
+            #section-general
+                .row
+                    margin: 3.5vh
+                    
+                    #instructor-icon-bg
+                        size = 7.5vw
+                        color = lighten(#3c454c, 10)
+
+                        position: relative
+                        
+                        width: size
+                        height: size
+                        margin-left: 50%
+                        transform: translateX(-50%)
+                        
+                        background-color: color
+                        border-radius: 15%
+                        box-shadow: 0 0.1vh 0.5vw rgba(0, 0, 0, .2)
+                        
+                        img
+                            position: absolute
+                            bottom: 0
+                            left: 50%
+                            transform: translateX(-50%)
+                            
+                            height: 85%
+                            
+                    input[type='text']
+                        margin-top: 1.0vh
+                        
+            #section-cars
+                min-height: 2.0 * list-item-size
+                
+                #block-contacts
+                    input
+                        width: 75%
+                        margin-left: 50%
+                        transform: translateX(-50%)
+
+                #cars-list
+                    #new-car 
+                        plus-item(list-item-size, list-item-rel * list-item-size,  #72acae)
+                        
+
+            #section-conditions
+                #select-wrapper
+                    width: 75%
+                    margin-left: 50%
+                    transform: translateX(-50%) 
+                    
+                    select 
+                        width: 100%
+                    
+                #new-place
+                    plus-item(list-item-size, list-item-rel * list-item-size, #72acae)
+                    
+                    
+            #section-extra 
+                td 
+                    vertical-align: middle

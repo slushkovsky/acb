@@ -1,0 +1,19 @@
+mixin modal(title, id, close_btn, success_btn)
+    - close_btn   = close_btn   || 'Закрыть'
+    - success_btn = success_btn || 'Сохранить'
+
+    .modal(class='fade' id=id tabindex='-1' role='dialog')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+                    
+                    h4.modal-title #{title}
+
+                .modal-body
+                    block 
+
+                .modal-footer
+                    button.btn(type='button' class='btn-default' data-dismiss='modal') #{close_btn}
+                    button.btn(type='button' class='btn-primary') #{success_btn}

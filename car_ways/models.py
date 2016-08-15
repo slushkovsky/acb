@@ -1,5 +1,24 @@
 from django.db import models
+from django.contrib import settings
 from django.utils.translation import ugettext as _ 
+from pymongo import MongoClient
+
+
+__working_hours = MongoClient()[settings.APP_MONGO_DB][settings.MONGO_WORK_HOURS_COLLECITON]
+
+
+class Bid(models.Model): 
+    class Meta: 
+        verbose_name        = _('Bid')
+        verbose_name_plural = _('Bids')
+
+
+    instructor = models.OneToOneField(Instructor, verbose_name=_('Instructor'))
+    datetime_from = models.DateTimeField(_('From'))
+    datetime_to = models.DateTimeField(_('To'))
+
+
+
 
 class Car(models.Model):
     class Meta:
@@ -51,6 +70,7 @@ class District(models.Model):
         return self.name
 
 
+
 class Waybill(models.Model):
     class Meta:
         verbose_name        = _('Waybill')
@@ -84,8 +104,25 @@ class Instructor(models.Model):
 
 
     def __str__(self):
-        return '{name} {surname} {patronymic}'.format(name      =self.name,
+        return '{name} {patronymic} {surname}'.format(name      =self.name,
                                                       surname   =self.surname,
                                                       patronymic=self.patronymic) 
+
+
+    def set_working_hours(self, date, hours):
+        user_hours = __working_hours.get(self.id, {})
+        date_key = date.strftime(settings.MONGO_DATE_FORMAT)
+
+        user_hours.insert_one(data_key, [{
+            'from': hours_range.begin.strftime(settings.MONGO_TIME_FORMAT),
+            'to':   hours_range.end  .strftime(settings.MONGO_TIME_FORMAT)} for hours_range in hours])
+
+
+    def get_working_hours(self, date):
+        user_hours = mongo[settings.MONGO_WORK_HOURS_COLLECITON][self.id]
+        hours = user_hours[date.strftime(settings.MONGO_DATE_FORMAT)]
+
+        return hours
+
 
 

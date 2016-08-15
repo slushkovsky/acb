@@ -1,0 +1,113 @@
+mixin checkbox(value, is_checked, required)
+    div(class='checkbox')
+        label(style='padding: 0;')
+            input(type='checkbox' value=value checked=is_checked required=required)
+            span(class='cr')
+                i(class='cr-icon glyphicon glyphicon-ok')
+
+html
+    head
+        meta(charset='utf-8')
+        title Добавление инструктора
+
+        link(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='bower_components/select2/dist/css/select2.min.css')
+
+        script(type='text/javascript' src='bower_components/jquery/dist/jquery.min.js')
+        script(type='text/javascript' src='bower_components/select2/dist/js/select2.min.js')
+        script(type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js')
+
+        link(rel='stylesheet' href='dashboard.css')    
+        link(rel='stylesheet' href='vendor_checkboxes.css')    
+
+
+    body.container
+        h1.text-center Добавление инструктора
+
+        form(name='new_instructor' method='POST')
+            .row#section-general
+                .row
+                    div(class='col-lg-4 col-lg-offset-4')
+                        #instructor-icon-bg
+                            img(src='img/instructor_photo.png')
+
+                .row
+                    div(class='col-lg-4 col-lg-offset-4')
+                        input.form-control(type='text' placeholder='Фамилия' name='name'    required)
+                        input.form-control(type='text' placeholder='Имя'     name='surname' required)
+
+                
+            hr
+
+            .row#section-cars
+                #block-contacts(class='col-lg-6')
+                    h4.text-center Контакты
+
+                    input.form-control(type='text' name='phone' placeholder='Телефон'  required)
+                    input.form-control(type='text' name='email' placeholder='Эл.почта' required)
+
+                #block-cars(class='col-lg-6')
+                    h4.text-center Машины
+
+                    #cars-list
+                        #new-car +
+
+            hr
+
+            .row#section-conditions
+                #block-routes(class='col-lg-6')
+                    h4.text-center Маршруты ГИБДД
+
+                    #select-wrapper
+                        select(id='routes-select' name='routes[]')
+                            option Марьино
+                            option Большая ордынка
+                            option Любнино
+                            option Пялово
+                            option Косино
+                            option Варшавский 
+
+                    .text-center
+                        a(href='/routes_list') Подробнее
+
+                #block-ground(class='col-lg-6')
+                    h4.text-center Площадки
+
+                    #new-place +
+
+            hr
+
+            .row#section-extra
+                #block-extra(class='col-lg-6')
+                    h4.text-center Дополнительно 
+
+                    table(style='margin-left: 12%;')
+                        tr
+                            td
+                                +checkbox('need_disabilities', false)
+                            td Занятия с инвалидами
+                        tr 
+                            td
+                                +checkbox('with_license')
+                            td Ученики с правами
+
+            .row
+                div(class='col-lg-3 col-lg-offset-3')
+                    button.btn(type='cancel') Отменить        
+                div(class='col-lg-3')
+                    button.btn(type='submit' class='btn-success') Добавить
+
+        include popups/_all.pug
+
+        script(type='text/javascript')
+            | $('#routes-select').select2({
+            |     multiple: true, 
+            |     placeholder: 'Маршрут' 
+            | });
+            | $('#new-car').click(function() {
+            |      $('#modal-add-car').modal('show');
+            | });
+
+
+
+

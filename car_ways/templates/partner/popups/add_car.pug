@@ -1,0 +1,28 @@
+include ./_modal.pug
+
++modal('Добавление машины', 'modal-add-car', 'Отмена', 'Добавить')
+    #car-photo(class='col-lg-6')
+        #car-photo-bg
+
+        //- p Фото
+        //- input(type='file')
+    
+    div(class='col-lg-6')
+        input.form-control(type='text' name='register-number' placeholder='гос.номер')
+
+        p Модель: 
+        .select-wrapper
+            select#car-model
+                option Renault Logan 
+                option Volkswagen Polo (sedan)
+
+        p Коробка передач:
+        .select-wrapper
+            select#car-transmission
+                option МКПП
+                option АКПП
+
+
+    script(type='text/javascript')
+        | $('#car-model').select2(); 
+        | $('#car-transmission').select2(); 

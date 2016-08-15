@@ -1,0 +1,19 @@
+{
+  "name": "Partner_view",
+  "description": "View for ACB partners",
+  "main": "",
+  "license": "ISC",
+  "homepage": "https://github.com/slushkovsky/acb",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "select2": "^4.0.3"
+  }
+}

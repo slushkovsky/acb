@@ -1,0 +1,14 @@
+{
+  "name": "Partner_view",
+  "version": "0.0.1",
+  "description": "View for ACB partners",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "devDependencies": {
+    "pug": "^2.0.0-beta5"
+  }, 
+  "license": "ISC"
+}

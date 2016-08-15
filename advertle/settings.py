@@ -149,3 +149,11 @@ CACHES = {
         'LOCATION' : ['localhost:6380']  # todo: add customization
     },
 }
+
+
+# MongoDB 
+
+APP_MONGO_DB = 'acb'
+MONGO_WORK_HOURS_COLLECITON = 'work_hours'
+MONGO_DATE_FORMAT = '%d/%m/%Y'
+MONGO_TIME_FORMAT = '%H:%M'
