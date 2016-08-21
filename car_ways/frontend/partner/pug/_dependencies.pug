@@ -1,0 +1,27 @@
+| {% load staticfiles %}
+
+- BOWER_DIR = 'components/'
+
+mixin js(path)
+    script(type='text/javascript' src='{% static \'' + path +  '\' %}')
+
+mixin css(path)
+    link(rel='stylesheet' href='{% static \'' + path +  '\' %}')
+
+mixin bower_css(path)
+    +css(BOWER_DIR + path)
+
+mixin bower_js(path)
+    +js(BOWER_DIR + path)
+
+mixin bower_pkg(name)
+    if name == 'bootstrap'
+        +bower_css('bootstrap/dist/css/bootstrap.min.css')
+        +bower_js('bootstrap/dist/js/bootstrap.min.js')
+
+    if name == 'jqeury'
+        +bower_js('jquery/dist/jquery.min.js') 
+
+    if name == 'select2'
+        +bower_css('select2/dist/css/select2.min.css')
+        +bower_js('select2/dist/js/select2.min.js')

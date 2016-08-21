@@ -1,0 +1,104 @@
+extends ./_layout.pug
+
+include ./checkboxes.pug
+
+block vars
+    -var title = 'Добавление инструктора'
+
+block dependencies 
+    +bower_pkg('select2')
+    +css('partner/add_instructor.css')
+    +css('partner/vendor_checkboxes.css') 
+
+
+block content
+    h1.text-center Добавление инструктора
+
+    form(name='new_instructor' method='POST')
+        .row#section-general
+            .row
+                div(class='col-lg-4 col-lg-offset-4')
+                    #instructor-icon-bg
+                        img(src='img/instructor_photo.png')
+
+            .row
+                div(class='col-lg-4 col-lg-offset-4')
+                    input.form-control(type='text' placeholder='Фамилия' name='name'    required)
+                    input.form-control(type='text' placeholder='Имя'     name='surname' required)
+
+            
+        hr
+
+        .row#section-cars
+            #block-contacts(class='col-lg-6')
+                h4.text-center Контакты
+
+                input.form-control(type='text' name='phone' placeholder='Телефон'  required)
+                input.form-control(type='text' name='email' placeholder='Эл.почта' required)
+
+            #block-cars(class='col-lg-6')
+                h4.text-center Машины
+
+                #cars-list
+                    #new-car +
+
+        hr
+
+        .row#section-conditions
+            #block-routes(class='col-lg-6')
+                h4.text-center Маршруты ГИБДД
+
+                #select-wrapper
+                    select(id='routes-select' name='routes[]')
+
+                .text-center
+                    a(href='/routes_list') Подробнее
+
+            #block-ground(class='col-lg-6')
+                h4.text-center Площадки
+
+                #new-place +
+
+        hr
+
+        .row#section-extra
+            #block-extra(class='col-lg-6')
+                h4.text-center Дополнительно 
+
+                table(style='margin-left: 12%;')
+                    tr
+                        td
+                            +checkbox('need_disabilities', false)
+                        td Занятия с инвалидами
+                    tr 
+                        td
+                            +checkbox('with_license')
+                        td Ученики с правами
+
+        .row
+            div(class='col-lg-3 col-lg-offset-3')
+                button.btn(type='cancel') Отменить        
+            div(class='col-lg-3')
+                button.btn(type='submit' class='btn-success') Добавить
+
+        //- include popups/_all.pug
+
+        script(type='text/javascript')
+            | $('#routes-select').select2({
+            |     tags: [
+            |         'Марьино', 
+            |         'Большая ордынка', 
+            |         'Любнино', 
+            |         'Пялово',
+            |         'Косино',
+            |         'Варшавский'
+            |     ],
+            |     multiple: true, 
+            |     placeholder: 'Маршрут' 
+            | });
+            | $('#new-car').click(function() {
+            |      $('#modal-add-car').modal('show');
+            | });
+
+
+

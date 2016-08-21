@@ -1,0 +1,55 @@
+extends ./_layout.pug
+
+block vars
+    - var title = 'Timeline';
+
+block dependencies 
+    +bower_js('jquery-template/jquery-loadTemplate/jquery.loadTemplate-1.4.4.min.js')
+
+    +css('partner/timeline.css')
+    +js('partner/js/assert.js')
+    +js('partner/js/pyformat.js')
+    +js('partner/js/time.js')    
+    +js('partner/js/timeline.js')
+
+block content
+    .row#instructor-info
+        div(class='col-lg-2 col-lg-offset-1')
+            #instructor-icon-bg
+                img(src="{% static 'partner/img/instructor_photo.png' %}")
+        div(class='col-lg-4')
+            h3 Лушковский Сергей
+
+
+    #table-rollers
+        #text 15 Aug - 21 Aug
+        
+        img#btn-forward(src='{% static \'partner/img/icons/forward.svg\' %}')
+        img#btn-backward(src='{% static \'partner/img/icons/backward.svg\' %}')
+        
+
+    table
+        thead 
+            tr
+                td.time-col
+                td.weekday-col(data-day='monday')
+                td.weekday-col(data-day='tuesday')
+                td.weekday-col(data-day='wednesday')
+                td.weekday-col(data-day='thurstday')
+                td.weekday-col(data-day='friday')
+                td.weekday-col(data-day='saturday') 
+                td.weekday-col(data-day='sunday') 
+
+        tbody
+
+
+    script#row-tmpl(type='text/html')
+        tr.time-record
+            td.time-col(data-content='time')
+            td.weekday-col(data-day='monday')
+            td.weekday-col(data-day='tuesday')
+            td.weekday-col(data-day='wednesday')
+            td.weekday-col(data-day='thurstday')
+            td.weekday-col(data-day='friday')
+            td.weekday-col(data-day='saturday') 
+            td.weekday-col(data-day='sunday') 

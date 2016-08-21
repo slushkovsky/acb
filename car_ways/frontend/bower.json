@@ -1,5 +1,5 @@
 {
-  "name": "Partner_view",
+  "name": "partner-view",
   "description": "View for ACB partners",
   "main": "",
   "license": "ISC",
@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "select2": "^4.0.3"
+    "select2": "^4.0.3",
+    "jquery-template": "^1.4.4"
   }
 }

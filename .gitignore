@@ -1,3 +1,7 @@
 *.sqlite3
 __pycache__
 venv
+bower_components/
+node_modules/
+static/
+templates/
