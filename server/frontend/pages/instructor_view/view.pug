@@ -1,0 +1,97 @@
+extends ../_layout.pug
+
+block deps
+    +bower_pkg('select2')
+    +bower_pkg('beauty-checkboxes')
+    +css('pages/instructor_view/view.css')
+
+
+block body
+    form
+        .row#section-general
+            .row
+                .center
+                    #instructor-icon-bg
+                        img(src='img/instructor_view/photo_dummy.png')
+
+            .row
+                .center
+                    input.form-control(
+                        type='text' 
+                        name='first_name' 
+                        placeholder='Фамилия' 
+                        required
+                    )
+                    input.form-control(
+                        type='text' 
+                        name='last_name' 
+                        placeholder='Имя' 
+                        required
+                    )
+
+        hr
+
+        .row#section-cars
+            .left#block-contacts
+                h4.text-center Контакты
+
+                input.form-control(
+                    type='text' 
+                    name='phone' 
+                    placeholder='Телефон' 
+                    required
+                )
+                input.form-control(
+                    type='text' 
+                    name='email' 
+                    placeholder='Эл.почта' 
+                    required
+                )
+
+            .right#block-cars
+                h4.text-center Машины
+
+                #cars-list
+                    #new-car +
+
+        hr
+
+        .row#section-conditions
+            .left#block-routes
+                h4.text-center Маршруты ГИБДД
+
+                #select-wrapper
+                    select(name='routes[]')
+
+                .text-center
+                    a(href='/routes_list') Подробнее
+
+            .right#block-ground
+                h4.text-center Площадки
+
+                #new-place +
+
+        hr
+
+        .row#section-extra
+            .left#block-extra
+                h4.text-center Дополнительно 
+
+                table(style='margin-left: 12%;')
+                    tr
+                        td
+                            checkbox(name='need_disabilities')
+                        td Занятия с инвалидами
+                    tr 
+                        td
+                            checkbox(name='with_license')
+                        td Ученики с правами
+
+        .row
+            div(class='col-lg-3 col-lg-offset-3')
+                button.btn-default(type='cancel') Отменить        
+            div(class='col-lg-3')
+                button.btn-success(type='submit') Добавить
+
+        //- include popups/_all.pug
+

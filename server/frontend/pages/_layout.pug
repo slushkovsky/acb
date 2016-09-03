@@ -1,0 +1,50 @@
+include ./_dependencies.pug
+
+html 
+    head
+        meta(charset='utf-8')
+
+        title ACB
+
+        +bower_pkg('jqeury')
+        +bower_pkg('bootstrap')
+
+        block deps
+
+    body.container
+        block body
+
+        .modal(class='fade' tabindex='-1' role='dialog')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        button(
+                            type='button' 
+                            class='close' 
+                            data-dismiss='modal' 
+                            aria-label='Close'
+                        )
+                            span(aria-hidden='true') &times;
+
+                        h4.modal-title Login error
+
+                    .modal-body
+                      
+                    .modal-footer
+                        button(
+                            type='button' 
+                            class='btn btn-default' 
+                            data-dismiss='modal'
+                        ) Close
+
+        script.
+            {% if messages %}
+            {% for msg in messages %}
+
+            $('.modal').on('show.bs.modal', function() {
+                $(this).find('.modal-body').html('{{ msg|safe }}');
+            });
+            $('.modal').modal();
+            
+            {% endfor %}
+            {% endif %}

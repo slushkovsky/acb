@@ -1,0 +1,31 @@
+extends ../_layout.pug
+
+mixin widget(img, title, href)
+	div.widget(data-href=href)
+		img(src=img)
+		h3= title
+
+block body
+	header
+		h1 ООО 'Ромашка'
+		img(src='partner/img/icons/settings.svg')
+
+	section
+		div(class='col-lg-5 col-lg-offset-1')
+			+widget(
+				'img/dashboard/instructors.png', 
+				'Инструкторы', 
+				'/instructors'
+			)
+
+		div(class='col-lg-5')
+			+widget(
+				'img/dashboard/driving_grounds.png', 
+				'Площадки', 
+				'/driving-grounds'
+			) 
+
+		script
+			| $('.widget').click(function() {
+			|     window.location = $(this).attr('data-href');
+			| });

@@ -1,0 +1,83 @@
+// @import './layout.styl'
+
+border = 1px solid rgba(125, 125, 125, 0.1)
+
+#instructor-info
+    margin-top: 3.5vh
+    margin-bottom: 7.5vh
+
+    #instructor-icon-bg
+        size = 7.5vw
+        color = lighten(#3c454c, 10)
+
+        position: relative
+        
+        width: size
+        height: size
+        margin-left: 50%
+        transform: translateX(-50%)
+        
+        background-color: color
+        border-radius: 15%
+        box-shadow: 0 0.1vh 0.5vw rgba(0, 0, 0, .2)
+        
+        img
+            position: absolute
+            bottom: 0
+            left: 50%
+            transform: translateX(-50%)
+            
+            height: 85%
+
+#table-rollers
+    buttons_size = 1.25vw 
+
+    position: relative 
+    height: 6.5vh
+
+    #text 
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+    #btn-backward
+        position: absolute
+        left: 2.5%
+        top: 50%
+        transform: translateY(-50%)
+        
+        width: buttons_size
+        height: buttons_size
+
+    #btn-forward
+        position: absolute
+        right: 2.5%
+        top: 50%
+        transform: translateY(-50%)
+        
+        width: buttons_size
+        height: buttons_size
+
+table
+    width: 100%
+
+    thead
+        border-top: border
+        border-bottom: border
+        
+    tbody 
+        .time-col
+            width: 9%
+            padding-right: 0.3vw
+            padding-top: 0.3vw
+            
+            text-align: right
+            
+        .weekday-col 
+            width: 13% 
+            
+        td
+            border-left: border
+            border-right: border
+            

@@ -1,0 +1,38 @@
+| {% load staticfiles %}
+
+- BOWER_DIR = 'components/'
+- function static(path) { return '{% static \'' + path + '\' %}'; }
+
+mixin js(path)
+    script(type='text/javascript' src=static(path))
+
+mixin css(path)
+    link(rel='stylesheet' href=static(path))
+
+
+mixin bower_css(path)
+    +css(BOWER_DIR + path)
+
+mixin bower_js(path)
+    +js(BOWER_DIR + path)
+
+
+mixin bower_pkg(pkg_name)
+    case pkg_name
+        when 'bootstrap'
+            +bower_css('bootstrap/dist/css/bootstrap.min.css')
+            +bower_js('bootstrap/dist/js/bootstrap.min.js')
+
+        when 'jqeury'
+            +bower_js('jquery/dist/jquery.min.js') 
+
+        when 'select2'
+            +bower_css('select2/dist/css/select2.min.css')
+            +bower_js('select2/dist/js/select2.min.js')
+
+        when 'js-py'
+            +bower_js('js-py/pyformat.js')
+
+        when 'beauty-checkboxes'
+            +bower_css('beauty-checkboxes/dist/beauty-checkboxes.min.css')
+            +bower_js('beauty-checkboxes/dist/beauty-checkboxes.min.css')

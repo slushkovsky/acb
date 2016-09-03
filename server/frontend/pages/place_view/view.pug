@@ -1,0 +1,64 @@
+extends ../_layout.pug
+
+block deps 
+    +bower_pkg('select2')
+    +css('partner/add_instructor.css') 
+
+
+mixin task(value, name)
+    tr
+        td
+            input.beau-checkbox(value=value)
+        td 
+            #{name}
+
+
+block body
+    form
+        .row#section-general
+            .row
+                .center
+                    #instructor-icon-bg
+                        img(src='img/dirving_ground_photo.png')
+
+            .row
+                .center
+                    input.form-control(
+                        type='text' 
+                        name='adress'
+                        placeholder='Адрес' 
+                        required
+                    )
+
+            
+        hr
+
+        .row#section-tasks
+            h4.text-center Упражнения
+
+            .left
+                +task('task-overpass', 'Эстакада')
+                +task('task-reverse-box', 'Въезд в бокс задним ходом')
+                +task('task-spread', 'Разворот')
+            
+            .right
+                +task('task-snake', 'Змейка')
+                +task('task-parallel-parking', 'Параллельная парковка')
+
+        .row
+            div(class='col-lg-3 col-lg-offset-3')
+                button.btn-default Отмена        
+            div(class='col-lg-3')
+                button.btn-success 
+
+
+        script
+            | $(function() {
+            |     $('.beau-checkboxes').each(function() {
+            |         beauCheckbox($(this));
+            |     }); 
+            | 
+            |     $('btn-success').text()
+            | });
+
+
