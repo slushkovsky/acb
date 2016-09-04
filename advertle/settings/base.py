@@ -1,13 +1,11 @@
 import os
 
 BASE_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                        '..', '..', '..')
+                        '..', '..')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'm!@f3r3kn27%e=^b5^a73belmlde^9&4o%37cw8_h07@y4&w28'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -40,8 +38,7 @@ ROOT_URLCONF = 'advertle.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,15 +52,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'advertle.wsgi.application'
-
-# Database
-
-DATABASES = {  # todo: add customization
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -82,25 +70,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# Internationalization
-
-LANGUAGE_CODE = 'ru'
-
-LANGUAGES = (
-    ('ru', 'Russian'), 
-    ('en', 'English')
-)
-
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-USE_L10N = True
-USE_TZ   = True
-
 
 # Static files (CSS, JavaScript, Images)
 

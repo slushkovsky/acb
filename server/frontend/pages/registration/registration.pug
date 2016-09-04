@@ -1,0 +1,86 @@
+extends ../_layout.pug
+
+block deps 
+    +css('registration/registration.css')
+
+block body
+    header 
+        h2 Регистрация
+        a#ref-signin(href='') Войти
+
+    hr 
+
+    form(method='POST')
+        | {% csrf_token %}
+
+        section
+            h3.text-center Реквизиты
+
+            .row 
+                .form-group(class='col-lg-6')
+                    label(for='input-name') Название:  
+                    input#input-name.form-control(
+                        type='text' 
+                        name='official_name'
+                        placeholder='ООО "Название"'
+                        required
+                        autofocus
+                    ) 
+                
+                .form-group(class='col-lg-6')
+                    label(for='input-address') Юр.адрес:  
+                    input#input-address.form-control(
+                        type='text' 
+                        name='address'
+                        placeholder='Город, улица, дом'
+                        required
+                    )
+
+                .form-group(class='col-lg-6')
+                    label(for='input-phone') Телефон:  
+                    input#input-phone.form-control(
+                        type='tel' 
+                        placeholder='+7 (___) _______'
+                        name='phone'
+                    )
+
+        hr
+
+        section
+            h3.text-center Авторизация
+
+            .row 
+                .form-group(class='col-lg-6')
+                    label(for='input-name') Email:  
+                    input#input-name.form-control(
+                        type='email' 
+                        name='email'
+                        placeholder='somemail@gmail.com'
+                        required
+                    )
+
+
+            .row
+                .form-group(class='col-lg-6')
+                    label(for='input-pswd') Пароль: 
+                    input#input-pswd.form-control(
+                        type='password' 
+                        name='password'
+                        required
+                    )
+
+                .form-group(class='col-lg-6')
+                    label(for='input-pswd-repeat') Повтор:
+                    input#input-paswd-repeat.form-control(
+                        type='password'
+                        required
+                    )
+
+
+        hr
+ 
+        button(
+            type='submit'
+            class='btn btn-success col-lg-4 col-lg-offset-4'
+        ) Зарегистрироваться 
+

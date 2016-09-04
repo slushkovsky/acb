@@ -6,6 +6,7 @@ import server.views as server
 urlpatterns = [
     url(r'^i18n/',          include('django.conf.urls.i18n')),
     url(r'^login/',         server.partner.login_view),
+    url(r'^registration/',  server.partner.registration_view),
     url(r'^api/employees/', server.rest.InstructorView.as_view()),
     url(r'^api/cars/',      server.rest.CarView.as_view()),
     url(r'^api/waybills/',  server.rest.WaybillView.as_view()),

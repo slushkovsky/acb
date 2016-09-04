@@ -19,7 +19,7 @@ gulp.task('build', function() {
         .pipe(pug()).on('error', console.log)
         .pipe(gulp.dest(TEMPLATES));
 
-    gulp.src(__dirname + '/pages/**/[!_]*.styl')
+    gulp.src(__dirname + '/pages/**/*.styl')
         .pipe(indent({tabs: false, amount: 4}))
         .pipe(stylus({compress: true})).on('error', console.log)
         .pipe(autoprefixer())

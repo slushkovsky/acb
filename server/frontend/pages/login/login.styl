@@ -5,82 +5,80 @@
         box-shadow: 0 0 10px rgba(255, 116, 112, 0.6)
 
 
-html
-    body 
-        height: 100%
+body
+    box-shadow: none !important
+    background-color: transparent !important
 
-        background-color: #2e81b0
+    .card 
+        padding: 40px 40px
+        margin: 0 auto 25px
+        margin-top: 50px
+        max-width: 350px
 
-        .card 
-            padding: 40px 40px
-            margin: 0 auto 25px
-            margin-top: 50px
-            max-width: 350px
+        border-radius: 2px
+        background-color: #fff
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .3)
 
-            border-radius: 2px
-            background-color: #fff
-            box-shadow: 0 2px 2px rgba(0, 0, 0, .3)
+        img 
+            size = 96px
 
-            img 
-                size = 96px
+            width: size
+            height: size
+            margin: 0 50% 2.4vh
+            transform: translateX(-50%) 
 
-                width: size
-                height: size
-                margin: 0 50% 2.4vh
-                transform: translateX(-50%) 
-
-                border-radius: 50%
+            border-radius: 50%
+            
+        form 
+            input[name="email"],
+            input[name="password"]
+                position: relative
+                z-index: 1
                 
-            form 
-                input[name="email"],
-                input[name="password"]
-                    position: relative
-                    z-index: 1
+                width: 100%
+                height: 44px
+                margin-bottom: 10px
+                box-sizing: border-box
+
+                font-size: 16px
+                
+
+
+
+            .form-control:focus 
+                border-color: rgb(104, 145, 162)
+                outline: none
+                box-shadow: inset 0 1px 1px rgba(0,     0,   0, .075),
+                                  0 0   8px rgba(104, 145, 162, 1   )
+
+
+            button[type='submit']
+                height: 36px
+                padding: 0
+                margin: 1.2vh 0
+
+                font-size: 14px
+                font-weight: 700
+
+                transition: all .218s
+
+                border: none
+                border-radius: 3px
+                background-color: #fc6c68
+                
+                &:hover, &:active, &:focus
+                    animation 400ms glowing_red forwards
+
+
+            #forgot-pass, 
+            #registration
+                display: inline-block
+                margin: 0.85vh 0
+
+                cursor: pointer
+
+                &:hover, &:active, &:focus 
+                    color: #2e81b0
                     
-                    width: 100%
-                    height: 44px
-                    margin-bottom: 10px
-                    box-sizing: border-box
-
-                    font-size: 16px
-                    
-
-    
-
-                .form-control:focus 
-                    border-color: rgb(104, 145, 162)
-                    outline: none
-                    box-shadow: inset 0 1px 1px rgba(0,     0,   0, .075),
-                                      0 0   8px rgba(104, 145, 162, 1   )
-
-
-                button[type='submit']
-                    height: 36px
-                    padding: 0
-                    margin: 1.2vh 0
-
-                    font-size: 14px
-                    font-weight: 700
-
-                    transition: all .218s
-
-                    border: none
-                    border-radius: 3px
-                    background-color: #fc6c68
-                    
-                    &:hover, &:active, &:focus
-                        animation 400ms glowing_red forwards
-
- 
-                #forgot-pass, 
-                #registration
-                    display: inline-block
-                    margin: 0.85vh 0
-
-                    cursor: pointer
-
-                    &:hover, &:active, &:focus 
-                        color: #2e81b0
-                        
-                #registration
-                    float: right
+            #registration
+                float: right
