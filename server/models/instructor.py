@@ -15,7 +15,7 @@ class Instructor(Model):
         verbose_name_plural = _('Instructors')
 
 
-    fist_name        = CharField   (_('First name'), max_length=50)
+    first_name       = CharField   (_('First name'), max_length=50)
     last_name        = CharField   (_('Last name'), max_length=50)
     photo            = ImageField  (_('Photo'), null=True, blank=True)
     with_licence     = BooleanField(_('With license'))

@@ -17,18 +17,18 @@ block body
             img(src='photo.png')
 
 
-    script
-        | $(function() {
-        |     {% for employee in employees %}
-        |     var tmpl = document.querySelector('#employee-tmpl');
-        |     var clone;
-        | 
-        |     tmpl.content.querySelector('.first_name').src = {{ employee.first_name }};
-        |     tmpl.content.querySelector('.last_name').src = {{ employee.last_name }};
-        |     tmpl.content.querySelector('.exp').src = {{ employee.exp }};
-        |     tmpl.content.querySelector('img').src = {{ employee.photo }};
-        |    
-        |     clone = document.importNode(tmpl.content, true);
-        |     document.querySelector('#list').appendChild(clone);
-        |     {% endfor %}
-        | });
+    script.
+        $(function() {
+            {% for employee in employees %}
+                var tmpl = document.querySelector('#employee-tmpl');
+                var clone;
+
+                tmpl.content.querySelector('.first_name').src = {{ employee.first_name }};
+                tmpl.content.querySelector('.last_name').src = {{ employee.last_name }};
+                tmpl.content.querySelector('.exp').src = {{ employee.exp }};
+                tmpl.content.querySelector('img').src = {{ employee.photo }};
+    
+                clone = document.importNode(tmpl.content, true);
+                document.querySelector('#list').appendChild(clone);
+            {% endfor %}
+        });

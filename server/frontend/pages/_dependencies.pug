@@ -1,7 +1,6 @@
-| {% load staticfiles %}
+include ./_django.pug
 
 - BOWER_DIR = 'components/'
-- function static(path) { return '{% static \'' + path + '\' %}'; }
 
 mixin js(path)
     script(type='text/javascript' src=static(path))

@@ -8,7 +8,8 @@
   },
   "author": "",
   "devDependencies": {
-    "pug": "^2.0.0-beta5"
+    "pug": "^2.0.0-beta5",
+    "stylus": "^0.54.5"
   },
   "license": "ISC",
   "dependencies": {
@@ -18,11 +19,9 @@
     "gulp-bower": "0.0.13",
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^3.0.3",
-    "gulp-indent": "^1.0.1",
-    "gulp-inject": "^4.1.0",
     "gulp-pug": "^3.0.4",
+    "gulp-replace": "^0.5.4",
     "gulp-stylus": "^2.5.0",
-    "gulp-uglify": "^2.0.0",
-    "stylus": "^0.54.5"
+    "gulp-uglify": "^2.0.0"
   }
 }

@@ -1,7 +1,13 @@
 var STATIC    = __dirname + '/../static',
     TEMPLATES = __dirname + '/../templates';
 
-var gulp         = require('gulp'),
+var PUG_FILES    = __dirname + '/pages/**/[!_]*.pug',
+    STYLUS_FILES = __dirname + '/pages/**/*.styl',
+    IMG_FILES    = __dirname + '/pages/**/*.{png,jpg,jpeg,gif}',
+    JS_FILES     = __dirname + '/pages/**/*.js';
+
+var del          = require('del'),
+    gulp         = require('gulp'),
     stylus       = require('gulp-stylus'),
     pug          = require('gulp-pug'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -9,30 +15,29 @@ var gulp         = require('gulp'),
     imagemin     = require('gulp-imagemin'),
     concat       = require('gulp-concat'),
     uglify       = require('gulp-uglify'),
-    indent       = require('gulp-indent'),
-    del          = require('del'), 
-    inject       = require('gulp-inject');
+    replace      = require('gulp-replace');
 
 
 gulp.task('build', function() {
-    gulp.src(__dirname + '/pages/**/[!_]*.pug')  
+    gulp.src(PUG_FILES)
+        .pipe(replace(/\t/g, '    '))
         .pipe(pug()).on('error', console.log)
         .pipe(gulp.dest(TEMPLATES));
 
-    gulp.src(__dirname + '/pages/**/*.styl')
-        .pipe(indent({tabs: false, amount: 4}))
+    gulp.src(STYLUS_FILES)
+        .pipe(replace(/\t/g, '    '))
         .pipe(stylus({compress: true})).on('error', console.log)
         .pipe(autoprefixer())
         .pipe(gulp.dest(STATIC));
 
-    gulp.src(__dirname + '/pages/**/*.{png,jpg,jpeg,gif}')
+    gulp.src(IMG_FILES)
         .pipe(imagemin())
         .pipe(gulp.dest(STATIC + '/img'));
 
-    gulp.src(__dirname + '/js/**/*.js')
+    gulp.src(JS_FILES)
         .pipe(gulp.dest(STATIC + '/js'));
 
-    // gulp.src(__dirname + '/js/**/*.js')
+    // gulp.src(JS_FILES)
     //     .pipe(uglify())
     //     .pipe(concat('scripts.js'))
     //     .pipe(gulp.dest(STATIC + '/js'));
@@ -46,4 +51,10 @@ gulp.task('clean', function() {
 });
 
 gulp.task('rebuild', ['clean', 'build']);
+
+gulp.task('watch', function() {
+    gulp.watch([PUG_FILES, STYLUS_FILES, IMG_FILES, JS_FILES], ['rebuild']);
+});
+
+
 

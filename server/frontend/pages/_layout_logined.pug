@@ -1,0 +1,20 @@
+extends ./_layout.pug
+
+block deps 
+    +bower_pkg('google-material-icons')
+    +css('_layout_logined.css')
+
+    block deps
+
+block body 
+    header
+        img(src=static('img/logo_black.png'))
+        h3 {{ legal_name }}
+        
+        a(href=url('logout'))
+            i.material-icons#icn-exit exit_to_app
+
+        a(href=url('settings'))
+            i.material-icons#icn-settings settings
+
+    block body

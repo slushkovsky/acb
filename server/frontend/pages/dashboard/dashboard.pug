@@ -1,4 +1,4 @@
-extends ../_layout.pug
+extends ../_layout_logined.pug
 
 mixin widget(img, title, href)
     .widget(data-href=href)
@@ -8,17 +8,9 @@ mixin widget(img, title, href)
                 h4.text-uppercase= title
 
 block deps
-    +bower_pkg('google-material-icons')
     +css('dashboard/dashboard.css')
 
 block body
-    header
-        h1 {{ legal_name }}
-        i.material-icons(
-        	width='32'
-        	height='32'
-        ) settings
-
     section
         div(class='col-lg-5 col-lg-offset-1')
             +widget(
@@ -34,7 +26,7 @@ block body
                 '/driving-grounds'
             ) 
 
-        script
-            | $('.widget').click(function() {
-            |     window.location = $(this).attr('data-href');
-            | });
+        script.
+            $('.widget').click(function() {
+                window.location = $(this).attr('data-href');
+            });
