@@ -7,7 +7,7 @@ from server.models import Instructor
 
 @require_http_methods(['GET', 'POST', 'PATCH', 'DELETE'])
 @login_required
-def view(request, id=None): 
+def instructor_view(request, id=None): 
 	if request.method == 'GET': 
 		return render(request, 'instructor.html', {
 			'instructor': get_object_or_404(Instructor, id),
@@ -22,11 +22,4 @@ def view(request, id=None):
 
 	elif request.method == 'DELETE': 
 		pass # Delete instructor with id
-
-
-@require_http_methods('GET')
-@login_required
-def list(request): 
-	return render(request, 'instructors_list.html', {
-		'instructors': Instructor.objects.all()
-	})
+	
