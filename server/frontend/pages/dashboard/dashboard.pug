@@ -1,31 +1,40 @@
 extends ../_layout.pug
 
 mixin widget(img, title, href)
-	div.widget(data-href=href)
-		img(src=img)
-		h3= title
+    .widget(data-href=href)
+        img(src=img)
+        .header-bg
+            .wrapper 
+                h4.text-uppercase= title
+
+block deps
+    +bower_pkg('google-material-icons')
+    +css('dashboard/dashboard.css')
 
 block body
-	header
-		h1 ООО 'Ромашка'
-		img(src='partner/img/icons/settings.svg')
+    header
+        h1 {{ legal_name }}
+        i.material-icons(
+        	width='32'
+        	height='32'
+        ) settings
 
-	section
-		div(class='col-lg-5 col-lg-offset-1')
-			+widget(
-				'img/dashboard/instructors.png', 
-				'Инструкторы', 
-				'/instructors'
-			)
+    section
+        div(class='col-lg-5 col-lg-offset-1')
+            +widget(
+                static('img/dashboard/img/instructor.png'), 
+                'Инструкторы', 
+                '/instructors'
+            )
 
-		div(class='col-lg-5')
-			+widget(
-				'img/dashboard/driving_grounds.png', 
-				'Площадки', 
-				'/driving-grounds'
-			) 
+        div(class='col-lg-5')
+            +widget(
+                static('img/dashboard/img/place.png'), 
+                'Площадки', 
+                '/driving-grounds'
+            ) 
 
-		script
-			| $('.widget').click(function() {
-			|     window.location = $(this).attr('data-href');
-			| });
+        script
+            | $('.widget').click(function() {
+            |     window.location = $(this).attr('data-href');
+            | });

@@ -25,7 +25,7 @@ gulp.task('build', function() {
         .pipe(autoprefixer())
         .pipe(gulp.dest(STATIC));
 
-    gulp.src(__dirname + '/img/**/*.{png,jpg,jpeg,gif}')
+    gulp.src(__dirname + '/pages/**/*.{png,jpg,jpeg,gif}')
         .pipe(imagemin())
         .pipe(gulp.dest(STATIC + '/img'));
 
