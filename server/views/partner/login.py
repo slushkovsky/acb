@@ -30,9 +30,9 @@ def login_view(request):
             user = authenticate(email   =form.cleaned_data['email'], 
                                 password=form.cleaned_data['password'])
 
-            logger.debug('Login: {!r} try'.format(user.email))
-
             if user is not None: 
+                logger.debug('Login: {!r} try'.format(user.email))               
+
                 login(request, user)
 
                 logger.debug('Login: {!r} success'.format(user.email))
@@ -42,7 +42,7 @@ def login_view(request):
                 else: 
                     return redirect('/dashboard')
             else: 
-                logger.debug('Login: {!r} password fail'.format(user.email))
+                logger.debug('Login: {!r} password fail'.format(form.cleaned_data['email']))
                 messages.error(request, 'Unknown user with such email/password')
         else: 
             logger.debug('Login: Invalid form')

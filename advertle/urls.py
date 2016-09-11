@@ -7,6 +7,7 @@ import server.views as server
 
 
 partner_urls = [
+    url(r'^$',              server.partner.dashboard_view,       name='index'), 
     url(r'^login',          server.partner.login_view,           name='login'),
     url(r'^logout/$',       server.partner.logout_view,          name='logout'),
     url(r'^registration/$', server.partner.registration_view,    name='registration'),
