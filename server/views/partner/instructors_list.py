@@ -7,9 +7,7 @@ from server.models import Instructor
 
 @require_http_methods('GET')
 @login_required
-def instructors_list_view(request):  
-    Instructor(first_name='Sergey', last_name='Lushkovsky').save()
-
+def instructors_list_view(request):
     return render(request, 'instructors_list/list.html', {
-        'instructors': Instructor.objects.all()
+        'employees': Instructor.objects.all()
     })

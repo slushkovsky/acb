@@ -7,9 +7,11 @@ block deps
     block deps
 
 block body 
+    block vars
+
     header
         img(src=static('img/logo_black.png'))
-        h3 {{ legal_name }}
+        h3 #{title}
         
         a(href=url('logout'))
             i.material-icons#icn-exit exit_to_app

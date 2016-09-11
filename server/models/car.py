@@ -19,5 +19,4 @@ class Car(Model):
     photo    = ImageField(_('Photo'   ), null=True, blank=True)
 
     def __str__(self): 
-        return '{mark} {model}'.format(mark =self.mark, 
-                                       model=self.model)
+        return '{mark} {model}'.format(**vars(self))

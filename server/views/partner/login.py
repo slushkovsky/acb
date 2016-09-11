@@ -59,3 +59,5 @@ def login_view(request):
 def logout_view(request): 
     logger.debug('Logout: {!r}'.format(request.user.email))
     logout(request)
+
+    return redirect('/login')

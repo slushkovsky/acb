@@ -27,8 +27,8 @@ class InstantRest(models.Model):
 		dayname = [day for day in WEEK_DAYS_CHOICES if day[0] == self.day_of_week][0]
 
 		return '{day}, {begin} - {end}'.format(day  =dayname,
-			                                   begin=time_from,
-			                                   end  =time_to);
+			                                   begin=self.time_from,
+			                                   end  =self.time_to);
 
 
 class SingleRest(models.Model): 

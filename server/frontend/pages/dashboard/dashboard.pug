@@ -7,6 +7,9 @@ mixin widget(img, title, href)
             .wrapper 
                 h4.text-uppercase= title
 
+block vars 
+    - var title = '{{ legal_name }}'; 
+
 block deps
     +css('dashboard/dashboard.css')
 

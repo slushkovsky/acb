@@ -14,4 +14,4 @@ class Waybill(Model):
     area = OneToOneField(District, verbose_name=_('District'))
 
     def __str__(self): 
-        return self.area.name
+        return str(self.area.name)

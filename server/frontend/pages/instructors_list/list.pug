@@ -1,20 +1,21 @@
-extends ../_layout.pug
+extends ../_layout_logined.pug
+
+block vars
+    - var title = 'Инструкторы';
 
 block deps
-    +css('instructor/card.css')
-    +js('instrucotrs_list.js')
-
+    +css('instructors_list/list.css')
+    //- +js('instrucotrs_list.js')
 
 block body
     #list
+        #wrapper
 
     template#employee-tmpl
-        .card(class='col-lg-3')
-            .text-center
-                span.first_name 
-                span.last_name 
+        .card
+            .name(class='text-center')
             .exp.text-center(data-content='exp')
-            img(src='photo.png')
+            img(src=static('img/instructors_list/photo_dummy.png'))
 
 
     script.
@@ -23,12 +24,11 @@ block body
                 var tmpl = document.querySelector('#employee-tmpl');
                 var clone;
 
-                tmpl.content.querySelector('.first_name').src = {{ employee.first_name }};
-                tmpl.content.querySelector('.last_name').src = {{ employee.last_name }};
-                tmpl.content.querySelector('.exp').src = {{ employee.exp }};
-                tmpl.content.querySelector('img').src = {{ employee.photo }};
+                tmpl.content.querySelector('.name').innerHTML = '{{ employee.first_name }} {{ employee.last_name }}';
+                //- tmpl.content.querySelector('.exp').src = {{ employee.exp }};
+                //- tmpl.content.querySelector('img').src = {{ employee.photo }};
     
                 clone = document.importNode(tmpl.content, true);
-                document.querySelector('#list').appendChild(clone);
+                document.querySelector('#wrapper').appendChild(clone);
             {% endfor %}
         });
