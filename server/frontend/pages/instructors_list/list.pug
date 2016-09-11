@@ -16,6 +16,22 @@ block body
             .name(class='text-center')
             .exp.text-center(data-content='exp')
             img(src=static('img/instructors_list/photo_dummy.png'))
+            
+            .menu-cover
+                .buttons-wrapper
+                    button  
+                        i.material-icons insert_chart
+                        span Статистика
+                    button 
+                        i.material-icons date_range
+                        span График
+                    button 
+                        i.material-icons edit
+                        span Изменить
+                    button
+                        i.material-icons delete
+                        span Удалить 
+
 
 
     script.
@@ -31,4 +47,13 @@ block body
                 clone = document.importNode(tmpl.content, true);
                 document.querySelector('#wrapper').appendChild(clone);
             {% endfor %}
+
+            $('.card').click(function() {
+                $('.menu-cover').hide();
+                $(this).children('.menu-cover').show();
+            });
+
+            $('.menu-cover').click(function() {
+                $(this).hide();
+            });
         });

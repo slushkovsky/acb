@@ -10,7 +10,8 @@ block body
     block vars
 
     header
-        img(src=static('img/logo_black.png'))
+        a(href=(url('dashboard')))
+            img(src=static('img/logo_black.png'))
         h3 #{title}
         
         a(href=url('logout'))
