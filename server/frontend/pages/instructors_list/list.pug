@@ -1,59 +1,12 @@
-extends ../_layout_logined.pug
+extends ../_list_view.pug
 
 block vars
     - var title = 'Инструкторы';
+    - var default_img = 'img/instructors_list/photo_dummy.png';
+    - var items_rules = {'.name': {prop: 'innerHTML', val: '{{ item.first_name }} {{ item.last_name }}'}}; 
 
-block deps
-    +css('instructors_list/list.css')
-    //- +js('instrucotrs_list.js')
-
-block body
-    #list
-        #wrapper
-
-    template#employee-tmpl
-        .card
-            .name(class='text-center')
-            .exp.text-center(data-content='exp')
-            img(src=static('img/instructors_list/photo_dummy.png'))
-            
-            .menu-cover
-                .buttons-wrapper
-                    button  
-                        i.material-icons insert_chart
-                        span Статистика
-                    button 
-                        i.material-icons date_range
-                        span График
-                    button 
-                        i.material-icons edit
-                        span Изменить
-                    button
-                        i.material-icons delete
-                        span Удалить 
-
-
-
-    script.
-        $(function() {
-            {% for employee in employees %}
-                var tmpl = document.querySelector('#employee-tmpl');
-                var clone;
-
-                tmpl.content.querySelector('.name').innerHTML = '{{ employee.first_name }} {{ employee.last_name }}';
-                //- tmpl.content.querySelector('.exp').src = {{ employee.exp }};
-                //- tmpl.content.querySelector('img').src = {{ employee.photo }};
-    
-                clone = document.importNode(tmpl.content, true);
-                document.querySelector('#wrapper').appendChild(clone);
-            {% endfor %}
-
-            $('.card').click(function() {
-                $('.menu-cover').hide();
-                $(this).children('.menu-cover').show();
-            });
-
-            $('.menu-cover').click(function() {
-                $(this).hide();
-            });
-        });
+block item-actions
+    +item-action('insert_chart', 'Статистика')
+    +item-action('date_range',   'График'    )
+    +item-action('edit',         'Изменить'  )
+    +item-action('delete',       'Удалить'   )

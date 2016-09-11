@@ -9,5 +9,5 @@ from server.models import Instructor
 @login_required
 def instructors_list_view(request):
     return render(request, 'instructors_list/list.html', {
-        'employees': Instructor.objects.all()
+        'items': Instructor.objects.all()
     })

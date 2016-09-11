@@ -1,8 +1,11 @@
-extends ../_layout.pug
-//- include ../_obj_cards.pug
+extends ../_list_view.pug
 
+block vars
+    - var title = 'Площадки';
+    - var default_img = 'img/instructors_list/photo_dummy.png'; // TODO
+    - var items_rules = {'.name': {prop: 'innerHTML', val: '{{ item.address }}'}}; 
 
-block body
-	//- +obj-card('area-tmpl')
-
-
+block item-actions
+    +item-action('date_range',   'Нагрузка')
+    +item-action('edit',         'Изменить')
+    +item-action('delete',       'Удалить' )

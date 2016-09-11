@@ -15,11 +15,11 @@ from server.utils import flash_form_errors
 logger = Logger('REGISTER')
 
 class RegistrationFrom(Form): 
-    official_name = CharField() 
-    address       = CharField()
-    phone         = CharField(required=False)
-    email         = EmailField()
-    password      = CharField()
+    legal_name = CharField() 
+    address    = CharField()
+    phone      = CharField(required=False)
+    email      = EmailField()
+    password   = CharField()
 
 
 @require_http_methods(['GET', 'POST'])
@@ -32,28 +32,30 @@ def registration_view(request):
         form = RegistrationFrom(request.POST)
 
         if form.is_valid(): 
-            try: 
-                user = create_user(email   =form.cleaned_data['email'],
-                                   password=form.cleaned_data['password'])
+            email      = form.cleaned_data['email']
+            password   = form.cleaned_data['password']
+            phone      = form.cleaned_data['phone']
+            address    = form.cleaned_data['address']
+            legal_name = form.cleaned_data['legal_name']
 
-                logger.debug('Valid form from {!r}'.format(user.email))
+            try: 
+                user = create_user(email=email, password=password)
+                logger.debug('Created user with email {!r}'.format(email))
 
             except AttributeError as e: 
-                logger.debug('Fail for {!r} (always exists)'.format(user.email))
-                messages.error(request, 'User with email: <b>{}</b> always exists'.format(form.cleaned_data['email']))
+                logger.debug('Couldn\'t create user with email {!r} (always exists)'.format(email))
+                messages.error(request, 'User with email: <b>{}</b> always exists'.format(email))
+            
             else: 
-                partner= Partner(phone        =form.cleaned_data['phone'], 
-                                 address      =form.cleaned_data['address'],
-                                 official_name=form.cleaned_data['official_name'],
-                                 user         =user)
-                partner.save()
+                Partner.objects.create(phone=phone, address=address, 
+                                       legal_name=legal_name, user=user)
 
-                logger.debug('Registered {!r}'.format(user.email))
+                logger.debug('Registered partner with email {!r}'.format(user.email))
 
                 return redirect('/login')
             
         else: 
-            logger.debug('Invalid form')
+            logger.debug('Recieved invalid form')
             flash_form_errors(request, form)
 
     if request.user.is_authenticated(): 

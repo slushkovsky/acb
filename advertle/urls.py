@@ -7,13 +7,14 @@ import server.views as server
 
 
 partner_urls = [
-    url(r'^$',              server.partner.dashboard_view,       name='index'), 
-    url(r'^login',          server.partner.login_view,           name='login'),
-    url(r'^logout/$',       server.partner.logout_view,          name='logout'),
-    url(r'^registration/$', server.partner.registration_view,    name='registration'),
-    url(r'^settings/$',     server.partner.settings_view,        name='settings'),
-    url(r'^dashboard/$',    server.partner.dashboard_view,       name='dashboard'),
-    url(r'^instructors/$',  server.partner.instructors_list_view),
+    url(r'^$',                 server.partner.dashboard_view,        name='index'), 
+    url(r'^login',             server.partner.login_view,            name='login'),
+    url(r'^logout/$',          server.partner.logout_view,           name='logout'),
+    url(r'^registration/$',    server.partner.registration_view,     name='registration'),
+    url(r'^settings/$',        server.partner.settings_view,         name='settings'),
+    url(r'^dashboard/$',       server.partner.dashboard_view,        name='dashboard'),
+    url(r'^instructors/$',     server.partner.instructors_list_view, name='instructors'),
+    url(r'^driving-grounds/$', server.partner.places_list_view,      name='driving-grounds')
 ]
 
 api_urls = [

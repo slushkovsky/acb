@@ -1,0 +1,57 @@
+extends ./_layout_logined.pug
+
+block vars
+    - var title = 'List view';
+    - var items_rules = {}; 
+    - var default_img = ''; // TODO
+
+    block vars
+
+
+block deps
+    +css('_list_view.css')
+
+
+mixin item-action(icon, text)
+    button  
+        i.material-icons #{icon}
+        span #{text}
+
+
+block body
+    #list
+        #wrapper
+
+    template#item-tmpl
+        .card
+            .name(class='text-center')
+            .exp.text-center(data-content='exp')
+            img(src=static(default_img))
+            
+            .menu-cover
+                .buttons-wrapper
+                    block item-actions
+
+
+    script
+        | $(function() {
+        |     {% for item in items %}
+        |        var tmpl = document.querySelector('#item-tmpl');
+        |        var clone;
+        | 
+        -        for (var selector in items_rules) 
+                    | tmpl.content.querySelector('#{selector}').#{items_rules[selector].prop} = '#{items_rules[selector].val}';
+        | 
+        |       clone = document.importNode(tmpl.content, true);
+        |       document.querySelector('#wrapper').appendChild(clone);
+        |     {% endfor %}
+        | 
+        |   $('.card').click(function() {
+        |        $('.menu-cover').hide();
+        |        $(this).children('.menu-cover').show();
+        |    });
+        | 
+        |   $('.menu-cover').click(function() {
+        |        $(this).hide();
+        |     });
+        | });

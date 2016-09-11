@@ -7,5 +7,5 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def dashboard_view(request): 
 	return render(request, 'dashboard/dashboard.html', {
-		'legal_name': request.user.partner.official_name
+		'legal_name': request.user.partner.legal_name
 	})
