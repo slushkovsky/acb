@@ -3,10 +3,33 @@ extends ../_list_view.pug
 block vars
     - var title = 'Инструкторы';
     - var default_img = 'img/instructors_list/photo_dummy.png';
+    - var items_data = {'id': '{{ item.id }}'};
     - var items_rules = {'.name': {prop: 'innerHTML', val: '{{ item.first_name }} {{ item.last_name }}'}}; 
 
 block item-actions
-    +item-action('insert_chart', 'Статистика')
-    +item-action('date_range',   'График'    )
-    +item-action('edit',         'Изменить'  )
-    +item-action('delete',       'Удалить'   )
+    +item-action('insert_chart', 'Статистика', 'stat    (this)')
+    +item-action('date_range',   'График'    , 'timeline(this)')
+    +item-action('edit',         'Изменить'  , 'edit    (this)')
+    +item-action('delete',       'Удалить'   , 'remove  (this)')  
+
+    script.
+        function getItemId(obj) {
+            return $(obj).parent().parent().parent().data('id');
+        }
+
+        function remove(obj) {
+            console.log('Remove: ' + getItemId(obj));
+        }
+
+        function stat(obj) {
+            console.log('Stat: ' + getItemId(obj));
+        }
+
+        function timeline(obj) {
+            window.location.href = '/timeline/' + getItemId(obj);
+        }
+
+        function edit(obj) {
+            console.log('Edit: ' + getItemId(obj));
+        }  
+    

@@ -1,4 +1,5 @@
 | {% load staticfiles %}
 
 - function static(path) { return '{% static \'' + path + '\' %}'; }
-- function url   (url)  { return '{% url    \'' + url  + '\' %}'; }
+- function __dict_to_array(dict) { var tmp = []; for (key in dict) { tmp.push(key + '=' + dict[key]); } return tmp; } 
+- function url(url, params) { return '{% url \'' + url  + '\' ' + (params === undefined ? [] : (Array.isArray(params) ? params : __dict_to_array(params))).join(' ') + ' %}'; }

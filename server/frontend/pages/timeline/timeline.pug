@@ -1,13 +1,12 @@
 extends ../_layout.pug
 
 block deps
-    +bower_js('jquery-template/jquery-loadTemplate/jquery.loadTemplate-1.4.4.min.js')
+    +bower_pkg('time-js')
+    +bower_pkg('js-py') 
+    +bower_pkg('google-material-icons')
 
-    +css('partner/timeline.css')
-    +js('partner/js/assert.js')
-    +js('partner/js/pyformat.js')
-    +js('partner/js/time.js')    
-    +js('partner/js/timeline.js')
+    +css('timeline/timeline.css')
+    +js('js/timeline/timeline.js')
 
 block body
     .row#instructor-info
@@ -15,37 +14,26 @@ block body
             #instructor-icon-bg
                 img(src=static('partner/img/instructor_photo.png'))
         div(class='col-lg-4')
-            h3 {{ name }} {{ surname }}
+            h3 {{ instructor.first_name }} {{ instructor.last_name }}
 
 
     #table-rollers
-        #text 15 Aug - 21 Aug
+        #text 12 Seps - 18 Sep
         
-        img#btn-forward(src=static('partner/img/icons/forward.svg'))
-        img#btn-backward(src=static('partner/img/icons/backward.svg'))
+        i.material-icons#btn-next arrow_forward
+        i.material-icons#btn-prev arrow_backward
 
     table
-        thead 
-            tr
-                td.time-col
-                td.weekday-col(data-day='monday')
-                td.weekday-col(data-day='tuesday')
-                td.weekday-col(data-day='wednesday')
-                td.weekday-col(data-day='thurstday')
-                td.weekday-col(data-day='friday')
-                td.weekday-col(data-day='saturday') 
-                td.weekday-col(data-day='sunday') 
-
+        thead
         tbody
 
-
-    script#row-tmpl(type='text/html')
-        tr.time-record
-            td.time-col(data-content='time')
-            td.weekday-col(data-day='monday')
-            td.weekday-col(data-day='tuesday')
-            td.weekday-col(data-day='wednesday')
-            td.weekday-col(data-day='thurstday')
-            td.weekday-col(data-day='friday')
-            td.weekday-col(data-day='saturday') 
-            td.weekday-col(data-day='sunday') 
+        template#row-tmpl
+            tr.time-row
+                td.time
+                td.mon
+                td.tue
+                td.wed
+                td.thu
+                td.fri
+                td.sat 
+                td.sun 

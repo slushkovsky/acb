@@ -6,14 +6,12 @@ from django.db.models import Model, CharField, ImageField, \
 
 from .car import Car
 from .waybill import Waybill
-from .rest import SingleRest, InstantRest
 
 
 class Instructor(Model):
     class Meta:
         verbose_name        = _('Instructor')
         verbose_name_plural = _('Instructors')
-
 
     first_name       = CharField   (_('First name'), max_length=50)
     last_name        = CharField   (_('Last name'), max_length=50)
@@ -22,13 +20,9 @@ class Instructor(Model):
     with_limitations = BooleanField(_('With limitations'))
     phone            = PhoneField  (_('Phone'))
     email            = EmailField  (_('Email'))
-
     car              = ForeignKey(Car)
-
     waybills         = ManyToManyField(Waybill,     verbose_name=_('Waybills'    ))
-    instant_rest     = ManyToManyField(InstantRest, verbose_name=_('Instant rest'))
-    single_rest      = ManyToManyField(SingleRest,  verbose_name=_('Single rest' ))
-
+    
     def __str__(self):
         return '{first_name} {last_name}'.format(**vars(self)) 
 

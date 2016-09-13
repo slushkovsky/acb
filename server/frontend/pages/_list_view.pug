@@ -3,6 +3,7 @@ extends ./_layout_logined.pug
 block vars
     - var title = 'List view';
     - var items_rules = {}; 
+    - var items_data = {};
     - var default_img = ''; // TODO
 
     block vars
@@ -12,8 +13,8 @@ block deps
     +css('_list_view.css')
 
 
-mixin item-action(icon, text)
-    button  
+mixin item-action(icon, text, onclick)
+    button(onClick=onclick)  
         i.material-icons #{icon}
         span #{text}
 
@@ -40,7 +41,10 @@ block body
         |        var clone;
         | 
         -        for (var selector in items_rules) 
-                    | tmpl.content.querySelector('#{selector}').#{items_rules[selector].prop} = '#{items_rules[selector].val}';
+                     | tmpl.content.querySelector('#{selector}').#{items_rules[selector].prop} = '#{items_rules[selector].val}';
+        | 
+        -        for (var attr in items_data) 
+                     | tmpl.content.querySelector('.card').setAttribute('data-#{attr}', '#{items_data[attr]}');
         | 
         |       clone = document.importNode(tmpl.content, true);
         |       document.querySelector('#wrapper').appendChild(clone);
