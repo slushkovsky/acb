@@ -15,7 +15,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "select2": "^4.0.3",
-    "js-py": "https://github.com/slushkovsky/js-py.git#ba944c0b1981c41595aa1ad0e4a590e78c627753",
+    "js-py": "https://github.com/slushkovsky/js-py.git#857f65ce98d3dc42925d61331f5124467ea383d6",
     "material-design-icons-iconfont": "^3.0.0",
     "time-js": "https://github.com/slushkovsky/time.git#d282fef598a24a98f266409f70d7f34ebd750986"
   }
