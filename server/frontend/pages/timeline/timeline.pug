@@ -3,6 +3,8 @@ extends ../_layout.pug
 block deps
     +bower_pkg('time-js')
     +bower_pkg('js-py') 
+    +bower_pkg('moment')
+    +bower_pkg('moment-range')      
     +bower_pkg('google-material-icons')
 
     +css('timeline/timeline.css')
@@ -18,7 +20,7 @@ block body
 
 
     #table-rollers
-        #text 12 Seps - 18 Sep
+        #interval-dates
         
         i.material-icons#btn-next arrow_forward
         i.material-icons#btn-prev arrow_backward
@@ -37,3 +39,13 @@ block body
                 td.fri
                 td.sat 
                 td.sun 
+
+        template#day-header-tmpl
+        	h5.text-center
+        		span.name
+        		br
+        		span.day
+        		| .
+        		span.month
+        		| .
+        		span.year

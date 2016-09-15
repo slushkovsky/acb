@@ -17,6 +17,8 @@
     "select2": "^4.0.3",
     "js-py": "https://github.com/slushkovsky/js-py.git#ba944c0b1981c41595aa1ad0e4a590e78c627753",
     "material-design-icons-iconfont": "^3.0.0",
-    "time-js": "https://github.com/slushkovsky/time.git#d282fef598a24a98f266409f70d7f34ebd750986"
+    "time-js": "https://github.com/slushkovsky/time.git#d282fef598a24a98f266409f70d7f34ebd750986",
+    "moment": "^2.15.0",
+    "moment-range": "^2.2.0"
   }
 }

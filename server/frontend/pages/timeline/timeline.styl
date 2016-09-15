@@ -2,8 +2,9 @@
 
 border = 1px solid rgba(125, 125, 125, 0.1)
 
-body
-    padding: 0 !important
+html 
+    body
+        padding: 0 !important
 
 #instructor-info
     margin-top: 3.5vh
@@ -32,55 +33,64 @@ body
             
             height: 85%
 
+
 #table-rollers
     buttons_size = 1.25vw 
 
     position: relative 
     height: 6.5vh
 
-    #text 
+    #interval-dates
         position: absolute
         left: 50%
         top: 50%
         transform: translate(-50%, -50%)
 
-    #btn-prev
+    #btn-prev, #btn-next
         position: absolute
-        left: 2.5%
         top: 50%
         transform: translateY(-50%)
         
         width: buttons_size
         height: buttons_size
+        
+        cursor: pointer
 
-    #btn-next
-        position: absolute
-        right: 2.5%
-        top: 50%
-        transform: translateY(-50%)
+    #btn-prev
+        left: 2.5%
         
-        width: buttons_size
-        height: buttons_size
+    #btn-next
+        right: 2.5%
 
 table
     width: 100%
+
+    .mon, .tue, .wed, .thu, .fri, .sat, .sun 
+        width: 13% 
+
+    .time
+        width: 9%
+        padding-right: 0.3vw
+        padding-top: 0.3vw
+        
+        text-align: right
 
     thead
         border-top: border
         border-bottom: border
         
-    tbody 
-        .time-col
-            width: 9%
-            padding-right: 0.3vw
-            padding-top: 0.3vw
-            
-            text-align: right
-            
-        .weekday-col 
-            width: 13% 
-            
-        td
-            border-left: border
-            border-right: border
+    tbody
+        tr, td
+            border: none
+            box-shadow: none     
+           
+
+[class*='event']
+    color: #fff
+    vertical-align: top
+    padding: 0.5% 0.5%
+
+    &.event-rest { background-color: #bdc3c7 }
+    &.event-bid  { background-color: #e74c3c }
+        
             

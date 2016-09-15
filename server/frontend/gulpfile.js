@@ -4,7 +4,8 @@ var STATIC    = __dirname + '/../static',
 var PUG_FILES    = __dirname + '/pages/**/[!_]*.pug',
     STYLUS_FILES = __dirname + '/pages/**/*.styl',
     IMG_FILES    = __dirname + '/pages/**/*.{png,jpg,jpeg,gif}',
-    JS_FILES     = __dirname + '/pages/**/*.js';
+    BABEL_FILES  = __dirname + '/pages/**/*.babel',
+    JS_FILES     = __dirname + '/pages/**/*.js' 
 
 var del          = require('del'),
     gulp         = require('gulp'),
@@ -15,7 +16,8 @@ var del          = require('del'),
     imagemin     = require('gulp-imagemin'),
     concat       = require('gulp-concat'),
     uglify       = require('gulp-uglify'),
-    replace      = require('gulp-replace');
+    replace      = require('gulp-replace'),
+    babel        = require('gulp-babel');
 
 
 gulp.task('build', function() {
@@ -33,6 +35,10 @@ gulp.task('build', function() {
     gulp.src(IMG_FILES)
         .pipe(imagemin())
         .pipe(gulp.dest(STATIC + '/img'));
+
+    gulp.src(BABEL_FILES)
+        .pipe(babel({presets: ['es2015']}))
+        .pipe(gulp.dest(STATIC + '/js'));
 
     gulp.src(JS_FILES)
         .pipe(gulp.dest(STATIC + '/js'));

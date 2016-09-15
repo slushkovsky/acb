@@ -1,0 +1,219 @@
+function createFromTemplate(id, data, importNode=true) {
+    let tmpl = document.getElementById(id);
+
+    if (tmpl === null) 
+        throw ('Template not found');
+
+    for (let selector in data) {
+        let element = tmpl.content.querySelector(selector);
+
+        if (element === null)
+            console.warn(`Nothing matched by selector: ${selector}`);
+
+        element.innerHTML = data[selector];
+    }
+
+    if (importNode) 
+        return document.importNode(tmpl.content, true);
+
+    return tmpl;
+}
+
+class Event {
+    constructor(begin, end, title='', descr='', decorationClass='') {
+        this.begin = begin; 
+        this.end = end;
+        this.title = title; 
+        this.descr = descr;
+        this.decorationClass = decorationClass;
+
+        if (!this.isValid())
+            throw 'Couldn\'t create class: validation fail';
+    }
+
+    isValid() {
+        return moment.isMoment(this.begin)             && 
+               moment.isMoment(this.end)               && 
+               typeof this.title           == 'string' &&
+               typeof this.descr           == 'string' && 
+               typeof this.decorationClass == 'string' &&
+               this.begin.isSame(this.end, 'day'); 
+    }
+}
+
+class RestEvent extends Event {
+    constructor(begin, end, reason='') {
+        super(begin, end, '', reason, 'event-rest');
+    }
+}
+
+class BidEvent extends Event {
+    constructor(begin, end, details='') {
+        super(begin, end, 'Заказ', details, 'event-bid');
+    }
+}
+
+class Shedule {
+    constructor(begin, end, step, viewInterval) {
+        if (begin === undefined || end === undefined || step === undefined) 
+            throw ('Missed required arguments');
+
+        this.weekBegin = moment().startOf('week').add(1, 'day'); // We added 1 day beacuse eng week starts from sunday
+        this.weekEnd   = moment().endOf  ('week').add(1, 'day');
+        this.intervals = [];
+        this.step = step;
+        this.cells = {};
+        this.viewIntervalPerdiod = parseInt((viewInterval === undefined ? step : viewInterval) / step);
+
+        let time = begin;
+
+        while(true) {
+            this.intervals.push(Time(time.toString())); // Couldn't be simply .push(time) - thats reference
+        
+            if ((time.hours24() > end.hours24()) || 
+                (time.hours24() == end.hours24() && time.minutes() > end.minutes())) {
+                break;
+            }
+
+            if (!time.shift(0, step))
+                break;
+        }
+
+        this.updateView();
+    }
+
+    toNextWeek() {
+        this.weekBegin.add(1, 'week');
+        this.weekEnd  .add(1, 'week');
+        this.updateView();
+    }
+
+    toPrevWeek() {
+        this.weekBegin.substruct(1, 'week');
+        this.weekEnd  .substruct(1, 'week');
+        this.updateView();
+    }
+
+    updateView() {
+        let tmplData = {};
+        let week = moment().range(this.weekBegin, this.weekEnd);
+
+        week.by('days', day => {
+            tmplData[day.format('ddd').toLowerCase()] = this.dayHeader(day);
+        });    
+
+        $('thead').children().remove();
+        $('thead').append(this.sheduleRow(tmplData));
+        $('#interval-dates').html(`${this.weekBegin.format("D MMM")} - ${this.weekEnd.format("D MMM")}`); 
+
+        $('tbody').children().remove();
+        for (let i in this.intervals) {
+            $('tbody').append(this.sheduleRow({ time: this.intervals[i].format('HH:mm') })); 
+            
+            this.cells[i] = $('tbody').children().last();
+
+            if (i % this.viewIntervalPerdiod != 0)
+                $('tbody').children().last().css('color', 'transparent'); 
+        }
+    }
+
+    addEvent(event) {
+        if (event.end.isBefore(this.weekBegin) || event.begin.isAfter(this.weekEnd)) 
+            throw ('Event is out of the current scope')
+
+        let intervalsIdx = this.findEventIntervals(event);
+
+        if (intervalsIdx === undefined) 
+            throw ('Couldn\'t find intervals');
+
+        let cellDayClass = '.' + event.begin.format('ddd').toLowerCase()
+        let cells = intervalsIdx.map((idx) => this.cells[idx].children(cellDayClass));
+
+        if (!cells[0].is(':visible'))
+            throw 'Events intersection';
+
+        cells.forEach((cell) => cell.hide());
+
+        cells[0].show();
+        cells[0].attr('rowspan', cells.length);
+        cells[0].html(event.title);
+        cells[0].addClass(event.decorationClass);
+
+        // cells[0].css('background-color', '#1abc9c'); 
+        // cells[0].css('color', '#fff');     
+    }
+
+    findEventIntervals(event) {
+        if (event === undefined)
+            throw ('Missed required arguments');
+
+        let intervalsIdx = [];
+
+        for (let i in this.intervals) {
+            let h = this.intervals[i].hours24();
+            let m = this.intervals[i].minutes();
+
+            if (intervalsIdx.length == 0)  {
+                if (h == event.begin.hours() && m == event.begin.minutes()) 
+                    intervalsIdx.push(i);
+            }
+            else {
+                intervalsIdx.push(i);
+
+                if (h == event.end.hours() && m == event.end.minutes())
+                    return intervalsIdx;
+            } 
+        }
+    }
+
+    sheduleRow(data={}) {
+        return createFromTemplate('row-tmpl', {
+            '.time': data.time ? data.time : '', 
+            '.mon' : data.mon  ? data.mon  : '', 
+            '.tue' : data.tue  ? data.tue  : '', 
+            '.wed' : data.wed  ? data.wed  : '', 
+            '.thu' : data.thu  ? data.thu  : '',
+            '.fri' : data.fri  ? data.fri  : '',
+            '.sat' : data.sat  ? data.sat  : '',
+            '.sun' : data.sun  ? data.sun  : ''
+        });
+    }
+
+    dayHeader(day) {
+        if (day === undefined) 
+            throw ('Missed required parameters');
+
+        return createFromTemplate('day-header-tmpl', {
+            '.name' : day.format('dddd'), 
+            '.day'  : day.date(),
+            '.month': day.month() + 1, // From 0 in moment.js 
+            '.year' : day.year()
+        }, false).innerHTML;
+    }
+}
+
+
+$(() => {
+    let shedule = new Shedule(Time('9:00 am'), Time('8:00 pm'), 15, 30);
+    let events = [
+        new RestEvent(moment([2016, 8, 12, 9,   0]), moment([2016, 8, 12, 10,  0])),
+        new RestEvent(moment([2016, 8, 12, 19,  0]), moment([2016, 8, 12, 20,  0])),
+        new RestEvent(moment([2016, 8, 13, 9,   0]), moment([2016, 8, 13, 10,  0])),
+        new RestEvent(moment([2016, 8, 13, 19,  0]), moment([2016, 8, 13, 20,  0])),
+        new RestEvent(moment([2016, 8, 14, 9,   0]), moment([2016, 8, 14, 10,  0])),
+        new RestEvent(moment([2016, 8, 14, 19,  0]), moment([2016, 8, 14, 20,  0])),
+        new RestEvent(moment([2016, 8, 15, 9,   0]), moment([2016, 8, 15, 10,  0])),
+        new RestEvent(moment([2016, 8, 15, 19,  0]), moment([2016, 8, 15, 20,  0])),
+        new RestEvent(moment([2016, 8, 16, 9,   0]), moment([2016, 8, 16, 10,  0])),
+        new RestEvent(moment([2016, 8, 16, 19,  0]), moment([2016, 8, 16, 20,  0])),
+        new RestEvent(moment([2016, 8, 17, 9,   0]), moment([2016, 8, 17, 20,  0])),
+        new RestEvent(moment([2016, 8, 18, 9,   0]), moment([2016, 8, 18, 20,  0])),
+        new BidEvent (moment([2016, 8, 14, 10, 15]), moment([2016, 8, 14, 12, 15])),
+        new BidEvent (moment([2016, 8, 15, 14, 15]), moment([2016, 8, 15, 16, 45])),
+    ]
+
+    events.forEach((ev) => shedule.addEvent(ev));
+
+    $('#btn-next').click(() => { shedule.toNextWeek() });
+    $('#btn-prev').click(() => { shedule.toPrevWeek() });
+});
